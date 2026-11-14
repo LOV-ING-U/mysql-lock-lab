@@ -85,15 +85,14 @@ http://localhost:8080 접속 후 순서:
 - `phase`: `enter`(진입 직전) / `return`(반환 직후). 인라인된 호출은 `enter`만 남습니다.
 - lock id는 GDB가 붙인 정수이고, 화면은 처음 등장한 순서대로 L1, L2…로 바꿔 보여줍니다.
 
-## 확인 방법
+## 실행
 
 ```bash
-# 트레이서 순수 함수 테스트
-python3 -m unittest discover -s tracer/tests -v
-
-# Kotlin 테스트 (Java 21 + Maven)
-mvn test
+podman machine start
+podman compose up -d --build
 ```
+
+완료 이후 localhost:8080으로 접속
 
 실제 동작 확인 (화면에서):
 
