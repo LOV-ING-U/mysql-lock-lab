@@ -1,0 +1,2142 @@
+{
+  "created_at": "2026-10-19T23:47:47.067781+09:00",
+  "metadata": {
+    "collection": "locklab_v08_aa64e0040e6580f9",
+    "points_count": 58,
+    "live_payloads_match": true,
+    "model": "intfloat/multilingual-e5-small"
+  },
+  "summary": {
+    "3": {
+      "hit": 0,
+      "recall": 0.0,
+      "rr": 0.0
+    },
+    "5": {
+      "hit": 0.25,
+      "recall": 0.083333,
+      "rr": 0.05
+    },
+    "10": {
+      "hit": 0.25,
+      "recall": 0.083333,
+      "rr": 0.05
+    },
+    "20": {
+      "hit": 0.75,
+      "recall": 0.541667,
+      "rr": 0.093561
+    },
+    "58": {
+      "hit": 1,
+      "recall": 1.0,
+      "rr": 0.099658
+    }
+  },
+  "cases": [
+    {
+      "case_id": "gap-coexist",
+      "query": "Gap Lock끼리는 충돌하나요?",
+      "ranking": [
+        {
+          "rank": 1,
+          "similarity": 0.87249494,
+          "chunk_id": "mysql84-locks-set-lock-tables",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "LOCK TABLES 경계\nLOCK TABLES에는 MySQL·InnoDB 계층의 락이 관여한다. 호출은 기존 트랜잭션을 암묵적으로 커밋한다."
+        },
+        {
+          "rank": 2,
+          "similarity": 0.8661654,
+          "chunk_id": "mysql84-autocommit-end-release",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "종료와 락해제\nCOMMIT은 변경을 확정하고 ROLLBACK은 취소한다. 둘 다 현재 트랜잭션에 설정된 InnoDB 락을 해제한다."
+        },
+        {
+          "rank": 3,
+          "similarity": 0.85725963,
+          "chunk_id": "mysql84-locks-set-replace",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "REPLACE 충돌\nREPLACE는 충돌이 없으면 INSERT처럼 처리한다. 유니크 키 충돌 시 교체 대상에 X 넥스트키 락을 사용한다."
+        },
+        {
+          "rank": 4,
+          "similarity": 0.8435536,
+          "chunk_id": "mysql84-locking-reads-privileges",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "잠금읽기 권한\nFOR SHARE에는 SELECT 권한이 필요하다. FOR UPDATE는 SELECT와 DELETE·LOCK TABLES·UPDATE 중 하나의 권한도 필요하다."
+        },
+        {
+          "rank": 5,
+          "similarity": 0.84320724,
+          "chunk_id": "mysql84-locks-set-insert-select",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "INSERT…SELECT 소스\nINSERT…SELECT의 대상 행은 X 레코드 락이다. 소스는 RC에서 일관 읽기, RR에서는 S 넥스트키 락을 사용한다. CREATE…SELECT도 같은 원칙을 따른다."
+        },
+        {
+          "rank": 6,
+          "similarity": 0.8421303,
+          "chunk_id": "mysql84-locking-table-compatibility",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "테이블락 호환성\n테이블 IX끼리·IS/IX는 호환된다. 테이블 X는 다른 모드와, 테이블 S는 IX와 충돌한다."
+        },
+        {
+          "rank": 7,
+          "similarity": 0.84066725,
+          "chunk_id": "mysql84-consistent-read-no-data-locks",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "일반SELECT 잠금\nRR·RC의 일반 SELECT는 일관 읽기이며 InnoDB 데이터 락을 설정하지 않아 다른 세션의 동시 변경을 허용한다."
+        },
+        {
+          "rank": 8,
+          "similarity": 0.8402492,
+          "chunk_id": "mysql84-isolation-default",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "격리수준 선택\nInnoDB의 기본은 RR이며 RC·RU·SERIALIZABLE도 지원한다. 격리 수준은 세션 또는 기본 설정에서 변경한다."
+        },
+        {
+          "rank": 9,
+          "similarity": 0.839486,
+          "chunk_id": "mysql84-locking-rc-gap-exceptions",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "RC 갭락예외\nREAD COMMITTED는 검색용 갭 락을 생략한다. FK·중복 키 검사는 예외다."
+        },
+        {
+          "rank": 10,
+          "similarity": 0.83921903,
+          "chunk_id": "mysql84-locking-reads-update",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "배타 잠금읽기\nFOR UPDATE는 검색한 행·관련 인덱스에 X 락을 설정한다. 경쟁 트랜잭션의 변경·잠금 읽기는 대기할 수 있다."
+        },
+        {
+          "rank": 11,
+          "similarity": 0.83910066,
+          "chunk_id": "mysql84-consistent-read-dml-difference",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "DML 가시성\nRR의 스냅샷 SELECT에 보이지 않는 최근 커밋 행도 UPDATE·DELETE의 대상이 될 수 있다."
+        },
+        {
+          "rank": 12,
+          "similarity": 0.836702,
+          "chunk_id": "mysql84-locking-auto-inc",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "자동증가 잠금\nAUTO-INC는 자동 증가 할당용 테이블 락이다. 사용 방식은 innodb_autoinc_lock_mode에 따른다."
+        },
+        {
+          "rank": 13,
+          "similarity": 0.8364208,
+          "chunk_id": "mysql84-locking-intention-protocol",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "의도 락과 획득 순서\nIS·IX는 테이블의 행 잠금 의도다. 행 S 전에는 IS 이상, X 전에는 IX가 필요하다. FOR SHARE는 IS, FOR UPDATE는 IX를 요청한다."
+        },
+        {
+          "rank": 14,
+          "similarity": 0.8360653,
+          "chunk_id": "mysql84-consistent-read-ddl",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "DDL 제한\nDROP TABLE에는 기존 스냅샷을 사용할 수 없다. 복사 방식 ALTER TABLE 뒤 재조회는 테이블 정의 변경 오류가 날 수 있다."
+        },
+        {
+          "rank": 15,
+          "similarity": 0.8360377,
+          "chunk_id": "mysql84-autocommit-disconnect",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "접속종료 롤백\nautocommit을 끈 세션이 마지막 트랜잭션을 커밋하지 않고 종료되면 MySQL은 해당 트랜잭션을 롤백한다."
+        },
+        {
+          "rank": 16,
+          "similarity": 0.8342278,
+          "chunk_id": "mysql84-locking-unique-existing",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "유니크 조회의 예외\n잠금 조회에서 존재하는 행을 완전한 유니크 조건으로 찾으면 앞쪽 갭을 잠그지 않는다. 복합 유니크 키 일부만 사용하면 제외된다."
+        },
+        {
+          "rank": 17,
+          "similarity": 0.83321714,
+          "chunk_id": "mysql84-isolation-rc-read-gap",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RC 읽기·갭\nRC의 일관 읽기는 매번 새 스냅샷을 사용한다. 검색용 갭 락은 생략하지만 FK·중복 키 검사는 예외다."
+        },
+        {
+          "rank": 18,
+          "similarity": 0.832791,
+          "chunk_id": "mysql84-locks-set-insert-duplicate",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "INSERT 중복오류\n일반 INSERT는 삽입 레코드에 X 락을 설정한다. 중복 키 오류 처리의 S 락은 데드락 원인이 될 수 있다."
+        },
+        {
+          "rank": 19,
+          "similarity": 0.83257985,
+          "chunk_id": "mysql84-autocommit-implicit-api",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "암묵적 커밋\n일부 문장은 트랜잭션을 암묵적으로 종료한다. JDBC 등은 SQL 문자열 외에 전용 커밋·롤백 메서드도 제공한다."
+        },
+        {
+          "rank": 20,
+          "similarity": 0.83214074,
+          "chunk_id": "mysql84-locking-sx-compatibility",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "S·X 호환성\n레코드 S 락끼리는 호환된다. 다른 트랜잭션의 X는 S·X 요청과 충돌하여 대기를 유발한다."
+        },
+        {
+          "rank": 21,
+          "similarity": 0.8319051,
+          "chunk_id": "mysql84-locking-reads-nowait",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "NOWAIT 동작\nNOWAIT는 행 락을 즉시 얻지 못하면 대기 없이 오류를 반환한다. 테이블 수준 대기까지 제거하지는 않는다."
+        },
+        {
+          "rank": 22,
+          "similarity": 0.82986057,
+          "chunk_id": "mysql84-consistent-read-embedded-select",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "내장SELECT 주의\nINSERT…SELECT 등 내장 SELECT는 일반 일관 읽기와 동작이 다를 수 있다. 소스 비잠금 읽기에는 RC·RU 조건을 확인한다."
+        },
+        {
+          "rank": 23,
+          "similarity": 0.82806695,
+          "chunk_id": "mysql84-locks-set-secondary-clustered",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "보조인덱스 잠금\n보조 인덱스에서 X 락을 설정하면 대응하는 클러스터 인덱스 레코드도 가져와 잠근다."
+        },
+        {
+          "rank": 24,
+          "similarity": 0.82804555,
+          "chunk_id": "mysql84-isolation-rr-locking-range",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RR 유니크·범위\nRR의 잠금 읽기·UPDATE·DELETE는 존재하는 유니크 단건에 레코드 락, 일반 범위에는 갭·넥스트키 락을 사용한다."
+        },
+        {
+          "rank": 25,
+          "similarity": 0.8275939,
+          "chunk_id": "mysql84-locking-reads-subquery",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "서브쿼리 범위\n바깥 SELECT의 잠금 절은 서브쿼리에 자동 전파되지 않는다. 내부 테이블도 잠그려면 내부 SELECT에도 잠금 절을 지정한다."
+        },
+        {
+          "rank": 26,
+          "similarity": 0.8275841,
+          "chunk_id": "mysql84-locks-set-upsert",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "UPSERT 잠금\nON DUPLICATE KEY UPDATE의 중복 처리는 X 락이다. PK 중복은 레코드, 유니크 키 중복은 넥스트키 락을 사용한다."
+        },
+        {
+          "rank": 27,
+          "similarity": 0.8271507,
+          "chunk_id": "mysql84-isolation-scan-nonmatching",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "스캔과 비일치행\n인덱스 없는 UPDATE 예제에서 RR은 읽은 행 잠금을 유지한다. RC는 WHERE에 맞지 않는 행의 잠금을 해제한다."
+        },
+        {
+          "rank": 28,
+          "similarity": 0.8268862,
+          "chunk_id": "mysql84-locking-insert-intention",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "삽입의도 공존\n삽입 의도는 갭 락이다. 같은 갭에서도 삽입 위치가 다르면 이 락끼리 대기하지 않는다."
+        },
+        {
+          "rank": 29,
+          "similarity": 0.8264111,
+          "chunk_id": "mysql84-locks-set-auto-inc-duration",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "AUTO-INC 유지시간\nAUTO-INC 테이블 락은 모드 0과 모드 1의 대량 삽입에서 문장 종료까지 유지된다. 모드 2는 사용하지 않는다."
+        },
+        {
+          "rank": 30,
+          "similarity": 0.8258953,
+          "chunk_id": "mysql84-locking-index-record",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "레코드락 대상\n레코드 락은 인덱스 레코드를 잠근다. 인덱스가 없어도 숨은 클러스터 인덱스를 사용한다."
+        },
+        {
+          "rank": 31,
+          "similarity": 0.8255149,
+          "chunk_id": "mysql84-locking-reads-share",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "공유 잠금읽기\nFOR SHARE는 읽은 행에 S 락을 건다. 다른 세션의 일반 읽기는 허용하되 해당 행 변경은 트랜잭션 종료까지 제한한다."
+        },
+        {
+          "rank": 32,
+          "similarity": 0.8252095,
+          "chunk_id": "mysql84-autocommit-autocommit-off",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "자동커밋 해제\nautocommit=0에서는 현재 트랜잭션을 COMMIT·ROLLBACK으로 끝내면 새 트랜잭션이 시작된다."
+        },
+        {
+          "rank": 33,
+          "similarity": 0.82486224,
+          "chunk_id": "mysql84-locking-reads-replication",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "복제 주의\nNOWAIT·SKIP LOCKED를 사용하는 문장은 문장 기반 복제에 안전하지 않다."
+        },
+        {
+          "rank": 34,
+          "similarity": 0.8229703,
+          "chunk_id": "mysql84-locking-reads-skip-locked",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "SKIP LOCKED 동작\nSKIP LOCKED는 잠긴 행을 결과에서 제외한다. 행 락에 적용되며 불완전한 결과를 허용하는 큐 처리에 적합하다."
+        },
+        {
+          "rank": 35,
+          "similarity": 0.8228325,
+          "chunk_id": "mysql84-isolation-serializable-autocommit",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "SERIALIZABLE 조건\nSERIALIZABLE에서 autocommit이 꺼지면 일반 SELECT가 FOR SHARE로 바뀐다. 자동 커밋의 독립 SELECT는 비잠금 일관 읽기가 가능하다."
+        },
+        {
+          "rank": 36,
+          "similarity": 0.82265854,
+          "chunk_id": "mysql84-consistent-read-mixed-versions",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "자기변경 예외\n같은 트랜잭션의 수정 행과 다른 행의 옛 버전이 함께 보여 실제로 존재하지 않았던 조합을 읽을 수 있다."
+        },
+        {
+          "rank": 37,
+          "similarity": 0.82243204,
+          "chunk_id": "mysql84-phantoms-definition",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "팬텀 현상\n트랜잭션의 같은 조건 재조회에서 행 집합이 달라지는 것이 팬텀이다. 갭 잠금을 끄면 경쟁 삽입이 가능해진다."
+        },
+        {
+          "rank": 38,
+          "similarity": 0.821437,
+          "chunk_id": "mysql84-locking-reads-counter",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "카운터 갱신\n동일 카운터를 공유 락으로 읽고 갱신하면 데드락이 가능하다. FOR UPDATE로 읽고 증가시키는 패턴을 사용할 수 있다."
+        },
+        {
+          "rank": 39,
+          "similarity": 0.82120955,
+          "chunk_id": "mysql84-isolation-rc-semi-consistent",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RC UPDATE 판정\nRC의 UPDATE는 잠긴 행의 최신 커밋 버전으로 조건을 판정한다. 갱신 대상이면 다시 읽어 잠그거나 대기한다."
+        },
+        {
+          "rank": 40,
+          "similarity": 0.8204611,
+          "chunk_id": "mysql84-locks-set-unlock-union",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "잠금해제 지연\n유니크 검색의 잠금 읽기는 부적합 행 잠금을 해제할 수 있다. UNION의 임시 테이블 처리로 실행 종료까지 해제가 늦어질 수 있다."
+        },
+        {
+          "rank": 41,
+          "similarity": 0.81847334,
+          "chunk_id": "mysql84-locking-gap-coexistence",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "갭락 공존\n갭 락은 구간 삽입을 막는다. 같은 갭의 S·X 갭 락은 공존한다."
+        },
+        {
+          "rank": 42,
+          "similarity": 0.81828284,
+          "chunk_id": "mysql84-locking-reads-transaction",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "잠금읽기 전제\n지속적인 잠금 읽기 실험은 START TRANSACTION 또는 autocommit=0으로 수행한다. FOR SHARE·UPDATE의 락은 COMMIT·ROLLBACK에서 해제된다."
+        },
+        {
+          "rank": 43,
+          "similarity": 0.81796336,
+          "chunk_id": "mysql84-phantoms-range-example",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "행잠금의 한계\nid가 90·102인 상태의 id>100 잠금 조회에서 102 행만 보호하면 경쟁 세션의 101 삽입을 막지 못한다."
+        },
+        {
+          "rank": 44,
+          "similarity": 0.8166994,
+          "chunk_id": "mysql84-autocommit-explicit-transaction",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "명시적 트랜잭션\nautocommit=1이어도 START TRANSACTION·BEGIN으로 다중 문장 트랜잭션을 시작하고 COMMIT·ROLLBACK으로 끝낼 수 있다."
+        },
+        {
+          "rank": 45,
+          "similarity": 0.81630933,
+          "chunk_id": "mysql84-locking-spatial",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "공간인덱스 잠금\n공간 인덱스는 RR·SERIALIZABLE에서 MBR 술어 락으로 조건에 맞는 삽입·수정을 제한한다."
+        },
+        {
+          "rank": 46,
+          "similarity": 0.8145487,
+          "chunk_id": "mysql84-consistent-read-visibility",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "스냅샷 가시성\n일관 읽기는 특정 시점까지 커밋된 변경을 본다. 이후·미커밋 변경은 제외하지만 같은 트랜잭션의 앞선 변경은 보인다."
+        },
+        {
+          "rank": 47,
+          "similarity": 0.8115003,
+          "chunk_id": "mysql84-phantoms-absence",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "비존재 키보호\n공유 넥스트키 락으로 후보 키의 삽입 위치를 보호·유지하면, 경쟁 삽입을 제한하는 애플리케이션 유일성 검사를 구성할 수 있다."
+        },
+        {
+          "rank": 48,
+          "similarity": 0.81123126,
+          "chunk_id": "mysql84-phantoms-next-key-tail",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "범위·끝구간 보호\n넥스트키 범위 잠금은 레코드와 앞쪽 갭을 함께 보호한다. id>100 예제는 마지막 레코드 뒤쪽 갭도 포함한다."
+        },
+        {
+          "rank": 49,
+          "similarity": 0.81121695,
+          "chunk_id": "mysql84-locks-set-scan-range",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "스캔범위 잠금\n잠금 읽기·UPDATE·DELETE의 잠금 범위는 스캔한 인덱스 범위에 좌우되며 격리 수준에 따라 달라진다."
+        },
+        {
+          "rank": 50,
+          "similarity": 0.80929565,
+          "chunk_id": "mysql84-isolation-ru",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RU 더티리드\nRU의 일반 SELECT는 비잠금 읽기이며 미커밋 변경을 읽는 더티 리드가 가능하다."
+        },
+        {
+          "rank": 51,
+          "similarity": 0.80514634,
+          "chunk_id": "mysql84-consistent-read-rr",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "RR 읽기시점\nRR은 첫 일관 읽기의 스냅샷을 재사용한다. 다른 트랜잭션이 커밋해도 기존 스냅샷은 그대로다."
+        },
+        {
+          "rank": 52,
+          "similarity": 0.80505025,
+          "chunk_id": "mysql84-autocommit-autocommit-default",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "자동커밋 기본\n기본 autocommit에서는 오류 없는 문장마다 커밋한다. 오류가 난 문장의 커밋·롤백 처리는 오류 종류에 따라 다르다."
+        },
+        {
+          "rank": 53,
+          "similarity": 0.80315787,
+          "chunk_id": "mysql84-locking-supremum",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "마지막 갭\nsupremum은 실제 행이 아니다. 마지막 넥스트키 구간은 최대 키 뒤쪽 갭을 잠근다."
+        },
+        {
+          "rank": 54,
+          "similarity": 0.80150163,
+          "chunk_id": "mysql84-consistent-read-rc",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "RC 읽기시점\nRC는 일관 읽기마다 새 스냅샷을 만든다. 같은 트랜잭션의 반복 조회도 다른 커밋 결과를 볼 수 있다."
+        },
+        {
+          "rank": 55,
+          "similarity": 0.8005862,
+          "chunk_id": "mysql84-locks-set-foreign-key",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "FK 검사잠금\nFK 검사에 읽은 레코드에는 S 락을 설정한다. 제약 검사 실패에도 설정될 수 있다."
+        },
+        {
+          "rank": 56,
+          "similarity": 0.8000719,
+          "chunk_id": "mysql84-locking-next-key",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "넥스트키 구성\n넥스트키는 인덱스 레코드와 앞쪽 갭을 함께 잠근다. RR의 범위 잠금에서 팬텀을 방지한다."
+        },
+        {
+          "rank": 57,
+          "similarity": 0.79938895,
+          "chunk_id": "mysql84-isolation-rr-read-mix",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RR 읽기혼합\nRR의 비잠금 읽기는 스냅샷, 잠금 읽기는 최신 상태를 사용하므로 혼합 결과가 직관과 다를 수 있다."
+        },
+        {
+          "rank": 58,
+          "similarity": 0.79288423,
+          "chunk_id": "mysql84-isolation-rr-snapshot",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RR 스냅샷\nRR의 일반 일관 읽기는 트랜잭션의 첫 일관 읽기에서 정한 스냅샷을 재사용한다."
+        }
+      ],
+      "embedding_ms": 117.57,
+      "vector_search_ms": 52.565,
+      "elapsed_ms": 170.135,
+      "question_number": 2,
+      "expected_chunk_ids": [
+        "mysql84-locking-gap-coexistence"
+      ],
+      "expected_ranks": [
+        {
+          "chunk_id": "mysql84-locking-gap-coexistence",
+          "rank": 41,
+          "similarity": 0.81847334,
+          "text": "갭락 공존\n갭 락은 구간 삽입을 막는다. 같은 갭의 S·X 갭 락은 공존한다."
+        }
+      ],
+      "metrics": {
+        "3": {
+          "hit": 0,
+          "recall": 0.0,
+          "rr": 0.0
+        },
+        "5": {
+          "hit": 0,
+          "recall": 0.0,
+          "rr": 0.0
+        },
+        "10": {
+          "hit": 0,
+          "recall": 0.0,
+          "rr": 0.0
+        },
+        "20": {
+          "hit": 0,
+          "recall": 0.0,
+          "rr": 0.0
+        },
+        "58": {
+          "hit": 1,
+          "recall": 1.0,
+          "rr": 0.024390243902439025
+        }
+      },
+      "baseline_top3_match": true
+    },
+    {
+      "case_id": "existing-pk",
+      "query": "RR에서 트랜잭션을 시작하고 존재하는 PK 행을 FOR UPDATE로 찾았어요. 앞쪽 Gap Lock도 생기나요?",
+      "ranking": [
+        {
+          "rank": 1,
+          "similarity": 0.8634361,
+          "chunk_id": "mysql84-isolation-scan-nonmatching",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "스캔과 비일치행\n인덱스 없는 UPDATE 예제에서 RR은 읽은 행 잠금을 유지한다. RC는 WHERE에 맞지 않는 행의 잠금을 해제한다."
+        },
+        {
+          "rank": 2,
+          "similarity": 0.8622863,
+          "chunk_id": "mysql84-autocommit-end-release",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "종료와 락해제\nCOMMIT은 변경을 확정하고 ROLLBACK은 취소한다. 둘 다 현재 트랜잭션에 설정된 InnoDB 락을 해제한다."
+        },
+        {
+          "rank": 3,
+          "similarity": 0.8601642,
+          "chunk_id": "mysql84-locking-reads-update",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "배타 잠금읽기\nFOR UPDATE는 검색한 행·관련 인덱스에 X 락을 설정한다. 경쟁 트랜잭션의 변경·잠금 읽기는 대기할 수 있다."
+        },
+        {
+          "rank": 4,
+          "similarity": 0.8569113,
+          "chunk_id": "mysql84-locking-rc-gap-exceptions",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "RC 갭락예외\nREAD COMMITTED는 검색용 갭 락을 생략한다. FK·중복 키 검사는 예외다."
+        },
+        {
+          "rank": 5,
+          "similarity": 0.8561411,
+          "chunk_id": "mysql84-consistent-read-dml-difference",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "DML 가시성\nRR의 스냅샷 SELECT에 보이지 않는 최근 커밋 행도 UPDATE·DELETE의 대상이 될 수 있다."
+        },
+        {
+          "rank": 6,
+          "similarity": 0.85523915,
+          "chunk_id": "mysql84-locks-set-lock-tables",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "LOCK TABLES 경계\nLOCK TABLES에는 MySQL·InnoDB 계층의 락이 관여한다. 호출은 기존 트랜잭션을 암묵적으로 커밋한다."
+        },
+        {
+          "rank": 7,
+          "similarity": 0.85343564,
+          "chunk_id": "mysql84-locking-reads-privileges",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "잠금읽기 권한\nFOR SHARE에는 SELECT 권한이 필요하다. FOR UPDATE는 SELECT와 DELETE·LOCK TABLES·UPDATE 중 하나의 권한도 필요하다."
+        },
+        {
+          "rank": 8,
+          "similarity": 0.85147274,
+          "chunk_id": "mysql84-locking-reads-share",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "공유 잠금읽기\nFOR SHARE는 읽은 행에 S 락을 건다. 다른 세션의 일반 읽기는 허용하되 해당 행 변경은 트랜잭션 종료까지 제한한다."
+        },
+        {
+          "rank": 9,
+          "similarity": 0.85143995,
+          "chunk_id": "mysql84-locks-set-insert-select",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "INSERT…SELECT 소스\nINSERT…SELECT의 대상 행은 X 레코드 락이다. 소스는 RC에서 일관 읽기, RR에서는 S 넥스트키 락을 사용한다. CREATE…SELECT도 같은 원칙을 따른다."
+        },
+        {
+          "rank": 10,
+          "similarity": 0.8494161,
+          "chunk_id": "mysql84-isolation-rc-semi-consistent",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RC UPDATE 판정\nRC의 UPDATE는 잠긴 행의 최신 커밋 버전으로 조건을 판정한다. 갱신 대상이면 다시 읽어 잠그거나 대기한다."
+        },
+        {
+          "rank": 11,
+          "similarity": 0.84876883,
+          "chunk_id": "mysql84-isolation-rr-locking-range",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RR 유니크·범위\nRR의 잠금 읽기·UPDATE·DELETE는 존재하는 유니크 단건에 레코드 락, 일반 범위에는 갭·넥스트키 락을 사용한다."
+        },
+        {
+          "rank": 12,
+          "similarity": 0.84720486,
+          "chunk_id": "mysql84-consistent-read-no-data-locks",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "일반SELECT 잠금\nRR·RC의 일반 SELECT는 일관 읽기이며 InnoDB 데이터 락을 설정하지 않아 다른 세션의 동시 변경을 허용한다."
+        },
+        {
+          "rank": 13,
+          "similarity": 0.84567755,
+          "chunk_id": "mysql84-locking-unique-existing",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "유니크 조회의 예외\n잠금 조회에서 존재하는 행을 완전한 유니크 조건으로 찾으면 앞쪽 갭을 잠그지 않는다. 복합 유니크 키 일부만 사용하면 제외된다."
+        },
+        {
+          "rank": 14,
+          "similarity": 0.8454088,
+          "chunk_id": "mysql84-locking-intention-protocol",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "의도 락과 획득 순서\nIS·IX는 테이블의 행 잠금 의도다. 행 S 전에는 IS 이상, X 전에는 IX가 필요하다. FOR SHARE는 IS, FOR UPDATE는 IX를 요청한다."
+        },
+        {
+          "rank": 15,
+          "similarity": 0.84526277,
+          "chunk_id": "mysql84-autocommit-autocommit-off",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "자동커밋 해제\nautocommit=0에서는 현재 트랜잭션을 COMMIT·ROLLBACK으로 끝내면 새 트랜잭션이 시작된다."
+        },
+        {
+          "rank": 16,
+          "similarity": 0.84507483,
+          "chunk_id": "mysql84-isolation-rc-read-gap",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RC 읽기·갭\nRC의 일관 읽기는 매번 새 스냅샷을 사용한다. 검색용 갭 락은 생략하지만 FK·중복 키 검사는 예외다."
+        },
+        {
+          "rank": 17,
+          "similarity": 0.84477067,
+          "chunk_id": "mysql84-autocommit-explicit-transaction",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "명시적 트랜잭션\nautocommit=1이어도 START TRANSACTION·BEGIN으로 다중 문장 트랜잭션을 시작하고 COMMIT·ROLLBACK으로 끝낼 수 있다."
+        },
+        {
+          "rank": 18,
+          "similarity": 0.8434441,
+          "chunk_id": "mysql84-locks-set-upsert",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "UPSERT 잠금\nON DUPLICATE KEY UPDATE의 중복 처리는 X 락이다. PK 중복은 레코드, 유니크 키 중복은 넥스트키 락을 사용한다."
+        },
+        {
+          "rank": 19,
+          "similarity": 0.84203136,
+          "chunk_id": "mysql84-consistent-read-mixed-versions",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "자기변경 예외\n같은 트랜잭션의 수정 행과 다른 행의 옛 버전이 함께 보여 실제로 존재하지 않았던 조합을 읽을 수 있다."
+        },
+        {
+          "rank": 20,
+          "similarity": 0.8412769,
+          "chunk_id": "mysql84-locking-reads-transaction",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "잠금읽기 전제\n지속적인 잠금 읽기 실험은 START TRANSACTION 또는 autocommit=0으로 수행한다. FOR SHARE·UPDATE의 락은 COMMIT·ROLLBACK에서 해제된다."
+        },
+        {
+          "rank": 21,
+          "similarity": 0.84115124,
+          "chunk_id": "mysql84-autocommit-implicit-api",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "암묵적 커밋\n일부 문장은 트랜잭션을 암묵적으로 종료한다. JDBC 등은 SQL 문자열 외에 전용 커밋·롤백 메서드도 제공한다."
+        },
+        {
+          "rank": 22,
+          "similarity": 0.8404193,
+          "chunk_id": "mysql84-consistent-read-rr",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "RR 읽기시점\nRR은 첫 일관 읽기의 스냅샷을 재사용한다. 다른 트랜잭션이 커밋해도 기존 스냅샷은 그대로다."
+        },
+        {
+          "rank": 23,
+          "similarity": 0.8402653,
+          "chunk_id": "mysql84-consistent-read-embedded-select",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "내장SELECT 주의\nINSERT…SELECT 등 내장 SELECT는 일반 일관 읽기와 동작이 다를 수 있다. 소스 비잠금 읽기에는 RC·RU 조건을 확인한다."
+        },
+        {
+          "rank": 24,
+          "similarity": 0.8396713,
+          "chunk_id": "mysql84-autocommit-disconnect",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "접속종료 롤백\nautocommit을 끈 세션이 마지막 트랜잭션을 커밋하지 않고 종료되면 MySQL은 해당 트랜잭션을 롤백한다."
+        },
+        {
+          "rank": 25,
+          "similarity": 0.83916116,
+          "chunk_id": "mysql84-isolation-default",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "격리수준 선택\nInnoDB의 기본은 RR이며 RC·RU·SERIALIZABLE도 지원한다. 격리 수준은 세션 또는 기본 설정에서 변경한다."
+        },
+        {
+          "rank": 26,
+          "similarity": 0.8347498,
+          "chunk_id": "mysql84-locks-set-insert-duplicate",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "INSERT 중복오류\n일반 INSERT는 삽입 레코드에 X 락을 설정한다. 중복 키 오류 처리의 S 락은 데드락 원인이 될 수 있다."
+        },
+        {
+          "rank": 27,
+          "similarity": 0.83312017,
+          "chunk_id": "mysql84-locking-reads-subquery",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "서브쿼리 범위\n바깥 SELECT의 잠금 절은 서브쿼리에 자동 전파되지 않는다. 내부 테이블도 잠그려면 내부 SELECT에도 잠금 절을 지정한다."
+        },
+        {
+          "rank": 28,
+          "similarity": 0.83284914,
+          "chunk_id": "mysql84-isolation-rr-snapshot",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RR 스냅샷\nRR의 일반 일관 읽기는 트랜잭션의 첫 일관 읽기에서 정한 스냅샷을 재사용한다."
+        },
+        {
+          "rank": 29,
+          "similarity": 0.832801,
+          "chunk_id": "mysql84-phantoms-definition",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "팬텀 현상\n트랜잭션의 같은 조건 재조회에서 행 집합이 달라지는 것이 팬텀이다. 갭 잠금을 끄면 경쟁 삽입이 가능해진다."
+        },
+        {
+          "rank": 30,
+          "similarity": 0.8315587,
+          "chunk_id": "mysql84-consistent-read-rc",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "RC 읽기시점\nRC는 일관 읽기마다 새 스냅샷을 만든다. 같은 트랜잭션의 반복 조회도 다른 커밋 결과를 볼 수 있다."
+        },
+        {
+          "rank": 31,
+          "similarity": 0.82608515,
+          "chunk_id": "mysql84-consistent-read-visibility",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "스냅샷 가시성\n일관 읽기는 특정 시점까지 커밋된 변경을 본다. 이후·미커밋 변경은 제외하지만 같은 트랜잭션의 앞선 변경은 보인다."
+        },
+        {
+          "rank": 32,
+          "similarity": 0.8249923,
+          "chunk_id": "mysql84-locking-auto-inc",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "자동증가 잠금\nAUTO-INC는 자동 증가 할당용 테이블 락이다. 사용 방식은 innodb_autoinc_lock_mode에 따른다."
+        },
+        {
+          "rank": 33,
+          "similarity": 0.82387406,
+          "chunk_id": "mysql84-locks-set-replace",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "REPLACE 충돌\nREPLACE는 충돌이 없으면 INSERT처럼 처리한다. 유니크 키 충돌 시 교체 대상에 X 넥스트키 락을 사용한다."
+        },
+        {
+          "rank": 34,
+          "similarity": 0.82355845,
+          "chunk_id": "mysql84-locking-reads-counter",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "카운터 갱신\n동일 카운터를 공유 락으로 읽고 갱신하면 데드락이 가능하다. FOR UPDATE로 읽고 증가시키는 패턴을 사용할 수 있다."
+        },
+        {
+          "rank": 35,
+          "similarity": 0.8220853,
+          "chunk_id": "mysql84-phantoms-next-key-tail",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "범위·끝구간 보호\n넥스트키 범위 잠금은 레코드와 앞쪽 갭을 함께 보호한다. id>100 예제는 마지막 레코드 뒤쪽 갭도 포함한다."
+        },
+        {
+          "rank": 36,
+          "similarity": 0.8215742,
+          "chunk_id": "mysql84-locking-reads-skip-locked",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "SKIP LOCKED 동작\nSKIP LOCKED는 잠긴 행을 결과에서 제외한다. 행 락에 적용되며 불완전한 결과를 허용하는 큐 처리에 적합하다."
+        },
+        {
+          "rank": 37,
+          "similarity": 0.82144386,
+          "chunk_id": "mysql84-locking-insert-intention",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "삽입의도 공존\n삽입 의도는 갭 락이다. 같은 갭에서도 삽입 위치가 다르면 이 락끼리 대기하지 않는다."
+        },
+        {
+          "rank": 38,
+          "similarity": 0.8212956,
+          "chunk_id": "mysql84-isolation-serializable-autocommit",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "SERIALIZABLE 조건\nSERIALIZABLE에서 autocommit이 꺼지면 일반 SELECT가 FOR SHARE로 바뀐다. 자동 커밋의 독립 SELECT는 비잠금 일관 읽기가 가능하다."
+        },
+        {
+          "rank": 39,
+          "similarity": 0.8211535,
+          "chunk_id": "mysql84-locking-reads-replication",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "복제 주의\nNOWAIT·SKIP LOCKED를 사용하는 문장은 문장 기반 복제에 안전하지 않다."
+        },
+        {
+          "rank": 40,
+          "similarity": 0.8211348,
+          "chunk_id": "mysql84-locking-reads-nowait",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "NOWAIT 동작\nNOWAIT는 행 락을 즉시 얻지 못하면 대기 없이 오류를 반환한다. 테이블 수준 대기까지 제거하지는 않는다."
+        },
+        {
+          "rank": 41,
+          "similarity": 0.81959045,
+          "chunk_id": "mysql84-locking-sx-compatibility",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "S·X 호환성\n레코드 S 락끼리는 호환된다. 다른 트랜잭션의 X는 S·X 요청과 충돌하여 대기를 유발한다."
+        },
+        {
+          "rank": 42,
+          "similarity": 0.8189769,
+          "chunk_id": "mysql84-isolation-rr-read-mix",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RR 읽기혼합\nRR의 비잠금 읽기는 스냅샷, 잠금 읽기는 최신 상태를 사용하므로 혼합 결과가 직관과 다를 수 있다."
+        },
+        {
+          "rank": 43,
+          "similarity": 0.8165183,
+          "chunk_id": "mysql84-locking-spatial",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "공간인덱스 잠금\n공간 인덱스는 RR·SERIALIZABLE에서 MBR 술어 락으로 조건에 맞는 삽입·수정을 제한한다."
+        },
+        {
+          "rank": 44,
+          "similarity": 0.81624794,
+          "chunk_id": "mysql84-locks-set-scan-range",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "스캔범위 잠금\n잠금 읽기·UPDATE·DELETE의 잠금 범위는 스캔한 인덱스 범위에 좌우되며 격리 수준에 따라 달라진다."
+        },
+        {
+          "rank": 45,
+          "similarity": 0.8156791,
+          "chunk_id": "mysql84-locks-set-secondary-clustered",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "보조인덱스 잠금\n보조 인덱스에서 X 락을 설정하면 대응하는 클러스터 인덱스 레코드도 가져와 잠근다."
+        },
+        {
+          "rank": 46,
+          "similarity": 0.81483865,
+          "chunk_id": "mysql84-locking-next-key",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "넥스트키 구성\n넥스트키는 인덱스 레코드와 앞쪽 갭을 함께 잠근다. RR의 범위 잠금에서 팬텀을 방지한다."
+        },
+        {
+          "rank": 47,
+          "similarity": 0.8142263,
+          "chunk_id": "mysql84-consistent-read-ddl",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "DDL 제한\nDROP TABLE에는 기존 스냅샷을 사용할 수 없다. 복사 방식 ALTER TABLE 뒤 재조회는 테이블 정의 변경 오류가 날 수 있다."
+        },
+        {
+          "rank": 48,
+          "similarity": 0.81281716,
+          "chunk_id": "mysql84-phantoms-absence",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "비존재 키보호\n공유 넥스트키 락으로 후보 키의 삽입 위치를 보호·유지하면, 경쟁 삽입을 제한하는 애플리케이션 유일성 검사를 구성할 수 있다."
+        },
+        {
+          "rank": 49,
+          "similarity": 0.81207025,
+          "chunk_id": "mysql84-locks-set-unlock-union",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "잠금해제 지연\n유니크 검색의 잠금 읽기는 부적합 행 잠금을 해제할 수 있다. UNION의 임시 테이블 처리로 실행 종료까지 해제가 늦어질 수 있다."
+        },
+        {
+          "rank": 50,
+          "similarity": 0.8119414,
+          "chunk_id": "mysql84-isolation-ru",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RU 더티리드\nRU의 일반 SELECT는 비잠금 읽기이며 미커밋 변경을 읽는 더티 리드가 가능하다."
+        },
+        {
+          "rank": 51,
+          "similarity": 0.80963266,
+          "chunk_id": "mysql84-locks-set-auto-inc-duration",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "AUTO-INC 유지시간\nAUTO-INC 테이블 락은 모드 0과 모드 1의 대량 삽입에서 문장 종료까지 유지된다. 모드 2는 사용하지 않는다."
+        },
+        {
+          "rank": 52,
+          "similarity": 0.8065785,
+          "chunk_id": "mysql84-locks-set-foreign-key",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "FK 검사잠금\nFK 검사에 읽은 레코드에는 S 락을 설정한다. 제약 검사 실패에도 설정될 수 있다."
+        },
+        {
+          "rank": 53,
+          "similarity": 0.8003659,
+          "chunk_id": "mysql84-locking-supremum",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "마지막 갭\nsupremum은 실제 행이 아니다. 마지막 넥스트키 구간은 최대 키 뒤쪽 갭을 잠근다."
+        },
+        {
+          "rank": 54,
+          "similarity": 0.8003251,
+          "chunk_id": "mysql84-locking-gap-coexistence",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "갭락 공존\n갭 락은 구간 삽입을 막는다. 같은 갭의 S·X 갭 락은 공존한다."
+        },
+        {
+          "rank": 55,
+          "similarity": 0.7999468,
+          "chunk_id": "mysql84-phantoms-range-example",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "행잠금의 한계\nid가 90·102인 상태의 id>100 잠금 조회에서 102 행만 보호하면 경쟁 세션의 101 삽입을 막지 못한다."
+        },
+        {
+          "rank": 56,
+          "similarity": 0.7976706,
+          "chunk_id": "mysql84-locking-index-record",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "레코드락 대상\n레코드 락은 인덱스 레코드를 잠근다. 인덱스가 없어도 숨은 클러스터 인덱스를 사용한다."
+        },
+        {
+          "rank": 57,
+          "similarity": 0.79251784,
+          "chunk_id": "mysql84-locking-table-compatibility",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "테이블락 호환성\n테이블 IX끼리·IS/IX는 호환된다. 테이블 X는 다른 모드와, 테이블 S는 IX와 충돌한다."
+        },
+        {
+          "rank": 58,
+          "similarity": 0.7847596,
+          "chunk_id": "mysql84-autocommit-autocommit-default",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "자동커밋 기본\n기본 autocommit에서는 오류 없는 문장마다 커밋한다. 오류가 난 문장의 커밋·롤백 처리는 오류 종류에 따라 다르다."
+        }
+      ],
+      "embedding_ms": 175.237,
+      "vector_search_ms": 3.78,
+      "elapsed_ms": 179.018,
+      "question_number": 3,
+      "expected_chunk_ids": [
+        "mysql84-locking-unique-existing",
+        "mysql84-isolation-rr-locking-range",
+        "mysql84-locking-reads-transaction"
+      ],
+      "expected_ranks": [
+        {
+          "chunk_id": "mysql84-locking-unique-existing",
+          "rank": 13,
+          "similarity": 0.84567755,
+          "text": "유니크 조회의 예외\n잠금 조회에서 존재하는 행을 완전한 유니크 조건으로 찾으면 앞쪽 갭을 잠그지 않는다. 복합 유니크 키 일부만 사용하면 제외된다."
+        },
+        {
+          "chunk_id": "mysql84-isolation-rr-locking-range",
+          "rank": 11,
+          "similarity": 0.84876883,
+          "text": "RR 유니크·범위\nRR의 잠금 읽기·UPDATE·DELETE는 존재하는 유니크 단건에 레코드 락, 일반 범위에는 갭·넥스트키 락을 사용한다."
+        },
+        {
+          "chunk_id": "mysql84-locking-reads-transaction",
+          "rank": 20,
+          "similarity": 0.8412769,
+          "text": "잠금읽기 전제\n지속적인 잠금 읽기 실험은 START TRANSACTION 또는 autocommit=0으로 수행한다. FOR SHARE·UPDATE의 락은 COMMIT·ROLLBACK에서 해제된다."
+        }
+      ],
+      "metrics": {
+        "3": {
+          "hit": 0,
+          "recall": 0.0,
+          "rr": 0.0
+        },
+        "5": {
+          "hit": 0,
+          "recall": 0.0,
+          "rr": 0.0
+        },
+        "10": {
+          "hit": 0,
+          "recall": 0.0,
+          "rr": 0.0
+        },
+        "20": {
+          "hit": 1,
+          "recall": 1.0,
+          "rr": 0.09090909090909091
+        },
+        "58": {
+          "hit": 1,
+          "recall": 1.0,
+          "rr": 0.09090909090909091
+        }
+      },
+      "baseline_top3_match": true
+    },
+    {
+      "case_id": "phantom",
+      "query": "조회한 행만 잠그면 되는데 왜 사이 구간과 마지막 레코드 뒤까지 막아요?",
+      "ranking": [
+        {
+          "rank": 1,
+          "similarity": 0.87108713,
+          "chunk_id": "mysql84-isolation-scan-nonmatching",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "스캔과 비일치행\n인덱스 없는 UPDATE 예제에서 RR은 읽은 행 잠금을 유지한다. RC는 WHERE에 맞지 않는 행의 잠금을 해제한다."
+        },
+        {
+          "rank": 2,
+          "similarity": 0.8688887,
+          "chunk_id": "mysql84-locks-set-insert-select",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "INSERT…SELECT 소스\nINSERT…SELECT의 대상 행은 X 레코드 락이다. 소스는 RC에서 일관 읽기, RR에서는 S 넥스트키 락을 사용한다. CREATE…SELECT도 같은 원칙을 따른다."
+        },
+        {
+          "rank": 3,
+          "similarity": 0.866651,
+          "chunk_id": "mysql84-locking-reads-share",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "공유 잠금읽기\nFOR SHARE는 읽은 행에 S 락을 건다. 다른 세션의 일반 읽기는 허용하되 해당 행 변경은 트랜잭션 종료까지 제한한다."
+        },
+        {
+          "rank": 4,
+          "similarity": 0.86628354,
+          "chunk_id": "mysql84-locks-set-unlock-union",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "잠금해제 지연\n유니크 검색의 잠금 읽기는 부적합 행 잠금을 해제할 수 있다. UNION의 임시 테이블 처리로 실행 종료까지 해제가 늦어질 수 있다."
+        },
+        {
+          "rank": 5,
+          "similarity": 0.8661479,
+          "chunk_id": "mysql84-phantoms-range-example",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "행잠금의 한계\nid가 90·102인 상태의 id>100 잠금 조회에서 102 행만 보호하면 경쟁 세션의 101 삽입을 막지 못한다."
+        },
+        {
+          "rank": 6,
+          "similarity": 0.8658243,
+          "chunk_id": "mysql84-locking-reads-privileges",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "잠금읽기 권한\nFOR SHARE에는 SELECT 권한이 필요하다. FOR UPDATE는 SELECT와 DELETE·LOCK TABLES·UPDATE 중 하나의 권한도 필요하다."
+        },
+        {
+          "rank": 7,
+          "similarity": 0.8649781,
+          "chunk_id": "mysql84-locking-unique-existing",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "유니크 조회의 예외\n잠금 조회에서 존재하는 행을 완전한 유니크 조건으로 찾으면 앞쪽 갭을 잠그지 않는다. 복합 유니크 키 일부만 사용하면 제외된다."
+        },
+        {
+          "rank": 8,
+          "similarity": 0.8644277,
+          "chunk_id": "mysql84-locking-reads-skip-locked",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "SKIP LOCKED 동작\nSKIP LOCKED는 잠긴 행을 결과에서 제외한다. 행 락에 적용되며 불완전한 결과를 허용하는 큐 처리에 적합하다."
+        },
+        {
+          "rank": 9,
+          "similarity": 0.86328137,
+          "chunk_id": "mysql84-consistent-read-no-data-locks",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "일반SELECT 잠금\nRR·RC의 일반 SELECT는 일관 읽기이며 InnoDB 데이터 락을 설정하지 않아 다른 세션의 동시 변경을 허용한다."
+        },
+        {
+          "rank": 10,
+          "similarity": 0.86274374,
+          "chunk_id": "mysql84-autocommit-disconnect",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "접속종료 롤백\nautocommit을 끈 세션이 마지막 트랜잭션을 커밋하지 않고 종료되면 MySQL은 해당 트랜잭션을 롤백한다."
+        },
+        {
+          "rank": 11,
+          "similarity": 0.8617635,
+          "chunk_id": "mysql84-autocommit-end-release",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "종료와 락해제\nCOMMIT은 변경을 확정하고 ROLLBACK은 취소한다. 둘 다 현재 트랜잭션에 설정된 InnoDB 락을 해제한다."
+        },
+        {
+          "rank": 12,
+          "similarity": 0.8613253,
+          "chunk_id": "mysql84-locking-reads-subquery",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "서브쿼리 범위\n바깥 SELECT의 잠금 절은 서브쿼리에 자동 전파되지 않는다. 내부 테이블도 잠그려면 내부 SELECT에도 잠금 절을 지정한다."
+        },
+        {
+          "rank": 13,
+          "similarity": 0.8583077,
+          "chunk_id": "mysql84-locking-intention-protocol",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "의도 락과 획득 순서\nIS·IX는 테이블의 행 잠금 의도다. 행 S 전에는 IS 이상, X 전에는 IX가 필요하다. FOR SHARE는 IS, FOR UPDATE는 IX를 요청한다."
+        },
+        {
+          "rank": 14,
+          "similarity": 0.8577131,
+          "chunk_id": "mysql84-locks-set-lock-tables",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "LOCK TABLES 경계\nLOCK TABLES에는 MySQL·InnoDB 계층의 락이 관여한다. 호출은 기존 트랜잭션을 암묵적으로 커밋한다."
+        },
+        {
+          "rank": 15,
+          "similarity": 0.8573189,
+          "chunk_id": "mysql84-phantoms-next-key-tail",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "범위·끝구간 보호\n넥스트키 범위 잠금은 레코드와 앞쪽 갭을 함께 보호한다. id>100 예제는 마지막 레코드 뒤쪽 갭도 포함한다."
+        },
+        {
+          "rank": 16,
+          "similarity": 0.8572131,
+          "chunk_id": "mysql84-isolation-default",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "격리수준 선택\nInnoDB의 기본은 RR이며 RC·RU·SERIALIZABLE도 지원한다. 격리 수준은 세션 또는 기본 설정에서 변경한다."
+        },
+        {
+          "rank": 17,
+          "similarity": 0.85702336,
+          "chunk_id": "mysql84-isolation-rc-semi-consistent",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RC UPDATE 판정\nRC의 UPDATE는 잠긴 행의 최신 커밋 버전으로 조건을 판정한다. 갱신 대상이면 다시 읽어 잠그거나 대기한다."
+        },
+        {
+          "rank": 18,
+          "similarity": 0.85377896,
+          "chunk_id": "mysql84-consistent-read-embedded-select",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "내장SELECT 주의\nINSERT…SELECT 등 내장 SELECT는 일반 일관 읽기와 동작이 다를 수 있다. 소스 비잠금 읽기에는 RC·RU 조건을 확인한다."
+        },
+        {
+          "rank": 19,
+          "similarity": 0.8534645,
+          "chunk_id": "mysql84-locking-auto-inc",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "자동증가 잠금\nAUTO-INC는 자동 증가 할당용 테이블 락이다. 사용 방식은 innodb_autoinc_lock_mode에 따른다."
+        },
+        {
+          "rank": 20,
+          "similarity": 0.85287774,
+          "chunk_id": "mysql84-locks-set-insert-duplicate",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "INSERT 중복오류\n일반 INSERT는 삽입 레코드에 X 락을 설정한다. 중복 키 오류 처리의 S 락은 데드락 원인이 될 수 있다."
+        },
+        {
+          "rank": 21,
+          "similarity": 0.85258913,
+          "chunk_id": "mysql84-locking-reads-nowait",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "NOWAIT 동작\nNOWAIT는 행 락을 즉시 얻지 못하면 대기 없이 오류를 반환한다. 테이블 수준 대기까지 제거하지는 않는다."
+        },
+        {
+          "rank": 22,
+          "similarity": 0.8502524,
+          "chunk_id": "mysql84-locking-reads-update",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "배타 잠금읽기\nFOR UPDATE는 검색한 행·관련 인덱스에 X 락을 설정한다. 경쟁 트랜잭션의 변경·잠금 읽기는 대기할 수 있다."
+        },
+        {
+          "rank": 23,
+          "similarity": 0.8496421,
+          "chunk_id": "mysql84-locks-set-secondary-clustered",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "보조인덱스 잠금\n보조 인덱스에서 X 락을 설정하면 대응하는 클러스터 인덱스 레코드도 가져와 잠근다."
+        },
+        {
+          "rank": 24,
+          "similarity": 0.8492591,
+          "chunk_id": "mysql84-isolation-serializable-autocommit",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "SERIALIZABLE 조건\nSERIALIZABLE에서 autocommit이 꺼지면 일반 SELECT가 FOR SHARE로 바뀐다. 자동 커밋의 독립 SELECT는 비잠금 일관 읽기가 가능하다."
+        },
+        {
+          "rank": 25,
+          "similarity": 0.84870374,
+          "chunk_id": "mysql84-consistent-read-dml-difference",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "DML 가시성\nRR의 스냅샷 SELECT에 보이지 않는 최근 커밋 행도 UPDATE·DELETE의 대상이 될 수 있다."
+        },
+        {
+          "rank": 26,
+          "similarity": 0.8482206,
+          "chunk_id": "mysql84-autocommit-implicit-api",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "암묵적 커밋\n일부 문장은 트랜잭션을 암묵적으로 종료한다. JDBC 등은 SQL 문자열 외에 전용 커밋·롤백 메서드도 제공한다."
+        },
+        {
+          "rank": 27,
+          "similarity": 0.84479636,
+          "chunk_id": "mysql84-locks-set-upsert",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "UPSERT 잠금\nON DUPLICATE KEY UPDATE의 중복 처리는 X 락이다. PK 중복은 레코드, 유니크 키 중복은 넥스트키 락을 사용한다."
+        },
+        {
+          "rank": 28,
+          "similarity": 0.844478,
+          "chunk_id": "mysql84-locks-set-auto-inc-duration",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "AUTO-INC 유지시간\nAUTO-INC 테이블 락은 모드 0과 모드 1의 대량 삽입에서 문장 종료까지 유지된다. 모드 2는 사용하지 않는다."
+        },
+        {
+          "rank": 29,
+          "similarity": 0.8442558,
+          "chunk_id": "mysql84-locks-set-scan-range",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "스캔범위 잠금\n잠금 읽기·UPDATE·DELETE의 잠금 범위는 스캔한 인덱스 범위에 좌우되며 격리 수준에 따라 달라진다."
+        },
+        {
+          "rank": 30,
+          "similarity": 0.8436849,
+          "chunk_id": "mysql84-locking-index-record",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "레코드락 대상\n레코드 락은 인덱스 레코드를 잠근다. 인덱스가 없어도 숨은 클러스터 인덱스를 사용한다."
+        },
+        {
+          "rank": 31,
+          "similarity": 0.8404203,
+          "chunk_id": "mysql84-locking-reads-replication",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "복제 주의\nNOWAIT·SKIP LOCKED를 사용하는 문장은 문장 기반 복제에 안전하지 않다."
+        },
+        {
+          "rank": 32,
+          "similarity": 0.84034234,
+          "chunk_id": "mysql84-consistent-read-ddl",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "DDL 제한\nDROP TABLE에는 기존 스냅샷을 사용할 수 없다. 복사 방식 ALTER TABLE 뒤 재조회는 테이블 정의 변경 오류가 날 수 있다."
+        },
+        {
+          "rank": 33,
+          "similarity": 0.83965814,
+          "chunk_id": "mysql84-locking-reads-transaction",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "잠금읽기 전제\n지속적인 잠금 읽기 실험은 START TRANSACTION 또는 autocommit=0으로 수행한다. FOR SHARE·UPDATE의 락은 COMMIT·ROLLBACK에서 해제된다."
+        },
+        {
+          "rank": 34,
+          "similarity": 0.8390731,
+          "chunk_id": "mysql84-isolation-ru",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RU 더티리드\nRU의 일반 SELECT는 비잠금 읽기이며 미커밋 변경을 읽는 더티 리드가 가능하다."
+        },
+        {
+          "rank": 35,
+          "similarity": 0.838469,
+          "chunk_id": "mysql84-isolation-rr-locking-range",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RR 유니크·범위\nRR의 잠금 읽기·UPDATE·DELETE는 존재하는 유니크 단건에 레코드 락, 일반 범위에는 갭·넥스트키 락을 사용한다."
+        },
+        {
+          "rank": 36,
+          "similarity": 0.83691645,
+          "chunk_id": "mysql84-locks-set-foreign-key",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "FK 검사잠금\nFK 검사에 읽은 레코드에는 S 락을 설정한다. 제약 검사 실패에도 설정될 수 있다."
+        },
+        {
+          "rank": 37,
+          "similarity": 0.8368912,
+          "chunk_id": "mysql84-locking-supremum",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "마지막 갭\nsupremum은 실제 행이 아니다. 마지막 넥스트키 구간은 최대 키 뒤쪽 갭을 잠근다."
+        },
+        {
+          "rank": 38,
+          "similarity": 0.8351744,
+          "chunk_id": "mysql84-consistent-read-mixed-versions",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "자기변경 예외\n같은 트랜잭션의 수정 행과 다른 행의 옛 버전이 함께 보여 실제로 존재하지 않았던 조합을 읽을 수 있다."
+        },
+        {
+          "rank": 39,
+          "similarity": 0.8348348,
+          "chunk_id": "mysql84-locking-reads-counter",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "카운터 갱신\n동일 카운터를 공유 락으로 읽고 갱신하면 데드락이 가능하다. FOR UPDATE로 읽고 증가시키는 패턴을 사용할 수 있다."
+        },
+        {
+          "rank": 40,
+          "similarity": 0.8333858,
+          "chunk_id": "mysql84-locks-set-replace",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "REPLACE 충돌\nREPLACE는 충돌이 없으면 INSERT처럼 처리한다. 유니크 키 충돌 시 교체 대상에 X 넥스트키 락을 사용한다."
+        },
+        {
+          "rank": 41,
+          "similarity": 0.83232534,
+          "chunk_id": "mysql84-locking-rc-gap-exceptions",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "RC 갭락예외\nREAD COMMITTED는 검색용 갭 락을 생략한다. FK·중복 키 검사는 예외다."
+        },
+        {
+          "rank": 42,
+          "similarity": 0.8301079,
+          "chunk_id": "mysql84-phantoms-definition",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "팬텀 현상\n트랜잭션의 같은 조건 재조회에서 행 집합이 달라지는 것이 팬텀이다. 갭 잠금을 끄면 경쟁 삽입이 가능해진다."
+        },
+        {
+          "rank": 43,
+          "similarity": 0.82906985,
+          "chunk_id": "mysql84-locking-next-key",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "넥스트키 구성\n넥스트키는 인덱스 레코드와 앞쪽 갭을 함께 잠근다. RR의 범위 잠금에서 팬텀을 방지한다."
+        },
+        {
+          "rank": 44,
+          "similarity": 0.8290364,
+          "chunk_id": "mysql84-isolation-rc-read-gap",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RC 읽기·갭\nRC의 일관 읽기는 매번 새 스냅샷을 사용한다. 검색용 갭 락은 생략하지만 FK·중복 키 검사는 예외다."
+        },
+        {
+          "rank": 45,
+          "similarity": 0.8285289,
+          "chunk_id": "mysql84-isolation-rr-read-mix",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RR 읽기혼합\nRR의 비잠금 읽기는 스냅샷, 잠금 읽기는 최신 상태를 사용하므로 혼합 결과가 직관과 다를 수 있다."
+        },
+        {
+          "rank": 46,
+          "similarity": 0.8284333,
+          "chunk_id": "mysql84-autocommit-autocommit-off",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "자동커밋 해제\nautocommit=0에서는 현재 트랜잭션을 COMMIT·ROLLBACK으로 끝내면 새 트랜잭션이 시작된다."
+        },
+        {
+          "rank": 47,
+          "similarity": 0.8273953,
+          "chunk_id": "mysql84-consistent-read-rc",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "RC 읽기시점\nRC는 일관 읽기마다 새 스냅샷을 만든다. 같은 트랜잭션의 반복 조회도 다른 커밋 결과를 볼 수 있다."
+        },
+        {
+          "rank": 48,
+          "similarity": 0.8269815,
+          "chunk_id": "mysql84-autocommit-explicit-transaction",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "명시적 트랜잭션\nautocommit=1이어도 START TRANSACTION·BEGIN으로 다중 문장 트랜잭션을 시작하고 COMMIT·ROLLBACK으로 끝낼 수 있다."
+        },
+        {
+          "rank": 49,
+          "similarity": 0.8253048,
+          "chunk_id": "mysql84-consistent-read-rr",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "RR 읽기시점\nRR은 첫 일관 읽기의 스냅샷을 재사용한다. 다른 트랜잭션이 커밋해도 기존 스냅샷은 그대로다."
+        },
+        {
+          "rank": 50,
+          "similarity": 0.8240378,
+          "chunk_id": "mysql84-phantoms-absence",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "비존재 키보호\n공유 넥스트키 락으로 후보 키의 삽입 위치를 보호·유지하면, 경쟁 삽입을 제한하는 애플리케이션 유일성 검사를 구성할 수 있다."
+        },
+        {
+          "rank": 51,
+          "similarity": 0.82371867,
+          "chunk_id": "mysql84-locking-sx-compatibility",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "S·X 호환성\n레코드 S 락끼리는 호환된다. 다른 트랜잭션의 X는 S·X 요청과 충돌하여 대기를 유발한다."
+        },
+        {
+          "rank": 52,
+          "similarity": 0.8217917,
+          "chunk_id": "mysql84-locking-spatial",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "공간인덱스 잠금\n공간 인덱스는 RR·SERIALIZABLE에서 MBR 술어 락으로 조건에 맞는 삽입·수정을 제한한다."
+        },
+        {
+          "rank": 53,
+          "similarity": 0.8179528,
+          "chunk_id": "mysql84-consistent-read-visibility",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "스냅샷 가시성\n일관 읽기는 특정 시점까지 커밋된 변경을 본다. 이후·미커밋 변경은 제외하지만 같은 트랜잭션의 앞선 변경은 보인다."
+        },
+        {
+          "rank": 54,
+          "similarity": 0.8177482,
+          "chunk_id": "mysql84-locking-gap-coexistence",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "갭락 공존\n갭 락은 구간 삽입을 막는다. 같은 갭의 S·X 갭 락은 공존한다."
+        },
+        {
+          "rank": 55,
+          "similarity": 0.8126583,
+          "chunk_id": "mysql84-locking-table-compatibility",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "테이블락 호환성\n테이블 IX끼리·IS/IX는 호환된다. 테이블 X는 다른 모드와, 테이블 S는 IX와 충돌한다."
+        },
+        {
+          "rank": 56,
+          "similarity": 0.8097607,
+          "chunk_id": "mysql84-locking-insert-intention",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "삽입의도 공존\n삽입 의도는 갭 락이다. 같은 갭에서도 삽입 위치가 다르면 이 락끼리 대기하지 않는다."
+        },
+        {
+          "rank": 57,
+          "similarity": 0.80885553,
+          "chunk_id": "mysql84-isolation-rr-snapshot",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RR 스냅샷\nRR의 일반 일관 읽기는 트랜잭션의 첫 일관 읽기에서 정한 스냅샷을 재사용한다."
+        },
+        {
+          "rank": 58,
+          "similarity": 0.8076519,
+          "chunk_id": "mysql84-autocommit-autocommit-default",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "자동커밋 기본\n기본 autocommit에서는 오류 없는 문장마다 커밋한다. 오류가 난 문장의 커밋·롤백 처리는 오류 종류에 따라 다르다."
+        }
+      ],
+      "embedding_ms": 33.259,
+      "vector_search_ms": 3.664,
+      "elapsed_ms": 36.923,
+      "question_number": 12,
+      "expected_chunk_ids": [
+        "mysql84-phantoms-range-example",
+        "mysql84-phantoms-next-key-tail",
+        "mysql84-locking-supremum"
+      ],
+      "expected_ranks": [
+        {
+          "chunk_id": "mysql84-phantoms-range-example",
+          "rank": 5,
+          "similarity": 0.8661479,
+          "text": "행잠금의 한계\nid가 90·102인 상태의 id>100 잠금 조회에서 102 행만 보호하면 경쟁 세션의 101 삽입을 막지 못한다."
+        },
+        {
+          "chunk_id": "mysql84-phantoms-next-key-tail",
+          "rank": 15,
+          "similarity": 0.8573189,
+          "text": "범위·끝구간 보호\n넥스트키 범위 잠금은 레코드와 앞쪽 갭을 함께 보호한다. id>100 예제는 마지막 레코드 뒤쪽 갭도 포함한다."
+        },
+        {
+          "chunk_id": "mysql84-locking-supremum",
+          "rank": 37,
+          "similarity": 0.8368912,
+          "text": "마지막 갭\nsupremum은 실제 행이 아니다. 마지막 넥스트키 구간은 최대 키 뒤쪽 갭을 잠근다."
+        }
+      ],
+      "metrics": {
+        "3": {
+          "hit": 0,
+          "recall": 0.0,
+          "rr": 0.0
+        },
+        "5": {
+          "hit": 1,
+          "recall": 0.3333333333333333,
+          "rr": 0.2
+        },
+        "10": {
+          "hit": 1,
+          "recall": 0.3333333333333333,
+          "rr": 0.2
+        },
+        "20": {
+          "hit": 1,
+          "recall": 0.6666666666666666,
+          "rr": 0.2
+        },
+        "58": {
+          "hit": 1,
+          "recall": 1.0,
+          "rr": 0.2
+        }
+      },
+      "baseline_top3_match": true
+    },
+    {
+      "case_id": "gap-vs-record",
+      "query": "gap lock과 record lock의 구별 기준은 뭐에요?",
+      "ranking": [
+        {
+          "rank": 1,
+          "similarity": 0.86256695,
+          "chunk_id": "mysql84-locks-set-lock-tables",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "LOCK TABLES 경계\nLOCK TABLES에는 MySQL·InnoDB 계층의 락이 관여한다. 호출은 기존 트랜잭션을 암묵적으로 커밋한다."
+        },
+        {
+          "rank": 2,
+          "similarity": 0.8581006,
+          "chunk_id": "mysql84-autocommit-end-release",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "종료와 락해제\nCOMMIT은 변경을 확정하고 ROLLBACK은 취소한다. 둘 다 현재 트랜잭션에 설정된 InnoDB 락을 해제한다."
+        },
+        {
+          "rank": 3,
+          "similarity": 0.84746075,
+          "chunk_id": "mysql84-consistent-read-no-data-locks",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "일반SELECT 잠금\nRR·RC의 일반 SELECT는 일관 읽기이며 InnoDB 데이터 락을 설정하지 않아 다른 세션의 동시 변경을 허용한다."
+        },
+        {
+          "rank": 4,
+          "similarity": 0.8466826,
+          "chunk_id": "mysql84-locking-rc-gap-exceptions",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "RC 갭락예외\nREAD COMMITTED는 검색용 갭 락을 생략한다. FK·중복 키 검사는 예외다."
+        },
+        {
+          "rank": 5,
+          "similarity": 0.84499073,
+          "chunk_id": "mysql84-locks-set-insert-select",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "INSERT…SELECT 소스\nINSERT…SELECT의 대상 행은 X 레코드 락이다. 소스는 RC에서 일관 읽기, RR에서는 S 넥스트키 락을 사용한다. CREATE…SELECT도 같은 원칙을 따른다."
+        },
+        {
+          "rank": 6,
+          "similarity": 0.84463215,
+          "chunk_id": "mysql84-isolation-default",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "격리수준 선택\nInnoDB의 기본은 RR이며 RC·RU·SERIALIZABLE도 지원한다. 격리 수준은 세션 또는 기본 설정에서 변경한다."
+        },
+        {
+          "rank": 7,
+          "similarity": 0.83931667,
+          "chunk_id": "mysql84-isolation-rc-read-gap",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RC 읽기·갭\nRC의 일관 읽기는 매번 새 스냅샷을 사용한다. 검색용 갭 락은 생략하지만 FK·중복 키 검사는 예외다."
+        },
+        {
+          "rank": 8,
+          "similarity": 0.8372581,
+          "chunk_id": "mysql84-isolation-rr-locking-range",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RR 유니크·범위\nRR의 잠금 읽기·UPDATE·DELETE는 존재하는 유니크 단건에 레코드 락, 일반 범위에는 갭·넥스트키 락을 사용한다."
+        },
+        {
+          "rank": 9,
+          "similarity": 0.834833,
+          "chunk_id": "mysql84-locking-reads-privileges",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "잠금읽기 권한\nFOR SHARE에는 SELECT 권한이 필요하다. FOR UPDATE는 SELECT와 DELETE·LOCK TABLES·UPDATE 중 하나의 권한도 필요하다."
+        },
+        {
+          "rank": 10,
+          "similarity": 0.8345558,
+          "chunk_id": "mysql84-locking-intention-protocol",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "의도 락과 획득 순서\nIS·IX는 테이블의 행 잠금 의도다. 행 S 전에는 IS 이상, X 전에는 IX가 필요하다. FOR SHARE는 IS, FOR UPDATE는 IX를 요청한다."
+        },
+        {
+          "rank": 11,
+          "similarity": 0.8326138,
+          "chunk_id": "mysql84-locking-reads-update",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "배타 잠금읽기\nFOR UPDATE는 검색한 행·관련 인덱스에 X 락을 설정한다. 경쟁 트랜잭션의 변경·잠금 읽기는 대기할 수 있다."
+        },
+        {
+          "rank": 12,
+          "similarity": 0.830129,
+          "chunk_id": "mysql84-locking-index-record",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "레코드락 대상\n레코드 락은 인덱스 레코드를 잠근다. 인덱스가 없어도 숨은 클러스터 인덱스를 사용한다."
+        },
+        {
+          "rank": 13,
+          "similarity": 0.8301233,
+          "chunk_id": "mysql84-locking-auto-inc",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "자동증가 잠금\nAUTO-INC는 자동 증가 할당용 테이블 락이다. 사용 방식은 innodb_autoinc_lock_mode에 따른다."
+        },
+        {
+          "rank": 14,
+          "similarity": 0.8266752,
+          "chunk_id": "mysql84-autocommit-disconnect",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "접속종료 롤백\nautocommit을 끈 세션이 마지막 트랜잭션을 커밋하지 않고 종료되면 MySQL은 해당 트랜잭션을 롤백한다."
+        },
+        {
+          "rank": 15,
+          "similarity": 0.8253374,
+          "chunk_id": "mysql84-consistent-read-embedded-select",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "내장SELECT 주의\nINSERT…SELECT 등 내장 SELECT는 일반 일관 읽기와 동작이 다를 수 있다. 소스 비잠금 읽기에는 RC·RU 조건을 확인한다."
+        },
+        {
+          "rank": 16,
+          "similarity": 0.8231951,
+          "chunk_id": "mysql84-isolation-scan-nonmatching",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "스캔과 비일치행\n인덱스 없는 UPDATE 예제에서 RR은 읽은 행 잠금을 유지한다. RC는 WHERE에 맞지 않는 행의 잠금을 해제한다."
+        },
+        {
+          "rank": 17,
+          "similarity": 0.8214654,
+          "chunk_id": "mysql84-locking-reads-replication",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "복제 주의\nNOWAIT·SKIP LOCKED를 사용하는 문장은 문장 기반 복제에 안전하지 않다."
+        },
+        {
+          "rank": 18,
+          "similarity": 0.820166,
+          "chunk_id": "mysql84-locking-reads-nowait",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "NOWAIT 동작\nNOWAIT는 행 락을 즉시 얻지 못하면 대기 없이 오류를 반환한다. 테이블 수준 대기까지 제거하지는 않는다."
+        },
+        {
+          "rank": 19,
+          "similarity": 0.81985253,
+          "chunk_id": "mysql84-locking-unique-existing",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "유니크 조회의 예외\n잠금 조회에서 존재하는 행을 완전한 유니크 조건으로 찾으면 앞쪽 갭을 잠그지 않는다. 복합 유니크 키 일부만 사용하면 제외된다."
+        },
+        {
+          "rank": 20,
+          "similarity": 0.81957734,
+          "chunk_id": "mysql84-locking-reads-skip-locked",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "SKIP LOCKED 동작\nSKIP LOCKED는 잠긴 행을 결과에서 제외한다. 행 락에 적용되며 불완전한 결과를 허용하는 큐 처리에 적합하다."
+        },
+        {
+          "rank": 21,
+          "similarity": 0.8193488,
+          "chunk_id": "mysql84-consistent-read-dml-difference",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "DML 가시성\nRR의 스냅샷 SELECT에 보이지 않는 최근 커밋 행도 UPDATE·DELETE의 대상이 될 수 있다."
+        },
+        {
+          "rank": 22,
+          "similarity": 0.81867063,
+          "chunk_id": "mysql84-locking-reads-share",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "공유 잠금읽기\nFOR SHARE는 읽은 행에 S 락을 건다. 다른 세션의 일반 읽기는 허용하되 해당 행 변경은 트랜잭션 종료까지 제한한다."
+        },
+        {
+          "rank": 23,
+          "similarity": 0.8176605,
+          "chunk_id": "mysql84-isolation-rc-semi-consistent",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RC UPDATE 판정\nRC의 UPDATE는 잠긴 행의 최신 커밋 버전으로 조건을 판정한다. 갱신 대상이면 다시 읽어 잠그거나 대기한다."
+        },
+        {
+          "rank": 24,
+          "similarity": 0.817474,
+          "chunk_id": "mysql84-locks-set-insert-duplicate",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "INSERT 중복오류\n일반 INSERT는 삽입 레코드에 X 락을 설정한다. 중복 키 오류 처리의 S 락은 데드락 원인이 될 수 있다."
+        },
+        {
+          "rank": 25,
+          "similarity": 0.8171169,
+          "chunk_id": "mysql84-locks-set-upsert",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "UPSERT 잠금\nON DUPLICATE KEY UPDATE의 중복 처리는 X 락이다. PK 중복은 레코드, 유니크 키 중복은 넥스트키 락을 사용한다."
+        },
+        {
+          "rank": 26,
+          "similarity": 0.81704044,
+          "chunk_id": "mysql84-phantoms-next-key-tail",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "범위·끝구간 보호\n넥스트키 범위 잠금은 레코드와 앞쪽 갭을 함께 보호한다. id>100 예제는 마지막 레코드 뒤쪽 갭도 포함한다."
+        },
+        {
+          "rank": 27,
+          "similarity": 0.81686294,
+          "chunk_id": "mysql84-locking-spatial",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "공간인덱스 잠금\n공간 인덱스는 RR·SERIALIZABLE에서 MBR 술어 락으로 조건에 맞는 삽입·수정을 제한한다."
+        },
+        {
+          "rank": 28,
+          "similarity": 0.81685704,
+          "chunk_id": "mysql84-locking-reads-transaction",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "잠금읽기 전제\n지속적인 잠금 읽기 실험은 START TRANSACTION 또는 autocommit=0으로 수행한다. FOR SHARE·UPDATE의 락은 COMMIT·ROLLBACK에서 해제된다."
+        },
+        {
+          "rank": 29,
+          "similarity": 0.8160699,
+          "chunk_id": "mysql84-locks-set-secondary-clustered",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "보조인덱스 잠금\n보조 인덱스에서 X 락을 설정하면 대응하는 클러스터 인덱스 레코드도 가져와 잠근다."
+        },
+        {
+          "rank": 30,
+          "similarity": 0.8153523,
+          "chunk_id": "mysql84-locks-set-replace",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "REPLACE 충돌\nREPLACE는 충돌이 없으면 INSERT처럼 처리한다. 유니크 키 충돌 시 교체 대상에 X 넥스트키 락을 사용한다."
+        },
+        {
+          "rank": 31,
+          "similarity": 0.8152101,
+          "chunk_id": "mysql84-autocommit-implicit-api",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "암묵적 커밋\n일부 문장은 트랜잭션을 암묵적으로 종료한다. JDBC 등은 SQL 문자열 외에 전용 커밋·롤백 메서드도 제공한다."
+        },
+        {
+          "rank": 32,
+          "similarity": 0.8130977,
+          "chunk_id": "mysql84-consistent-read-ddl",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "DDL 제한\nDROP TABLE에는 기존 스냅샷을 사용할 수 없다. 복사 방식 ALTER TABLE 뒤 재조회는 테이블 정의 변경 오류가 날 수 있다."
+        },
+        {
+          "rank": 33,
+          "similarity": 0.81228375,
+          "chunk_id": "mysql84-locking-reads-subquery",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "서브쿼리 범위\n바깥 SELECT의 잠금 절은 서브쿼리에 자동 전파되지 않는다. 내부 테이블도 잠그려면 내부 SELECT에도 잠금 절을 지정한다."
+        },
+        {
+          "rank": 34,
+          "similarity": 0.8116256,
+          "chunk_id": "mysql84-isolation-serializable-autocommit",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "SERIALIZABLE 조건\nSERIALIZABLE에서 autocommit이 꺼지면 일반 SELECT가 FOR SHARE로 바뀐다. 자동 커밋의 독립 SELECT는 비잠금 일관 읽기가 가능하다."
+        },
+        {
+          "rank": 35,
+          "similarity": 0.8104205,
+          "chunk_id": "mysql84-consistent-read-rc",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "RC 읽기시점\nRC는 일관 읽기마다 새 스냅샷을 만든다. 같은 트랜잭션의 반복 조회도 다른 커밋 결과를 볼 수 있다."
+        },
+        {
+          "rank": 36,
+          "similarity": 0.81023246,
+          "chunk_id": "mysql84-locking-insert-intention",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "삽입의도 공존\n삽입 의도는 갭 락이다. 같은 갭에서도 삽입 위치가 다르면 이 락끼리 대기하지 않는다."
+        },
+        {
+          "rank": 37,
+          "similarity": 0.81007165,
+          "chunk_id": "mysql84-locks-set-auto-inc-duration",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "AUTO-INC 유지시간\nAUTO-INC 테이블 락은 모드 0과 모드 1의 대량 삽입에서 문장 종료까지 유지된다. 모드 2는 사용하지 않는다."
+        },
+        {
+          "rank": 38,
+          "similarity": 0.8085404,
+          "chunk_id": "mysql84-locking-reads-counter",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+          "text": "카운터 갱신\n동일 카운터를 공유 락으로 읽고 갱신하면 데드락이 가능하다. FOR UPDATE로 읽고 증가시키는 패턴을 사용할 수 있다."
+        },
+        {
+          "rank": 39,
+          "similarity": 0.8082429,
+          "chunk_id": "mysql84-autocommit-explicit-transaction",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "명시적 트랜잭션\nautocommit=1이어도 START TRANSACTION·BEGIN으로 다중 문장 트랜잭션을 시작하고 COMMIT·ROLLBACK으로 끝낼 수 있다."
+        },
+        {
+          "rank": 40,
+          "similarity": 0.80799913,
+          "chunk_id": "mysql84-autocommit-autocommit-off",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "자동커밋 해제\nautocommit=0에서는 현재 트랜잭션을 COMMIT·ROLLBACK으로 끝내면 새 트랜잭션이 시작된다."
+        },
+        {
+          "rank": 41,
+          "similarity": 0.8072575,
+          "chunk_id": "mysql84-locks-set-scan-range",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "스캔범위 잠금\n잠금 읽기·UPDATE·DELETE의 잠금 범위는 스캔한 인덱스 범위에 좌우되며 격리 수준에 따라 달라진다."
+        },
+        {
+          "rank": 42,
+          "similarity": 0.8065562,
+          "chunk_id": "mysql84-phantoms-definition",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "팬텀 현상\n트랜잭션의 같은 조건 재조회에서 행 집합이 달라지는 것이 팬텀이다. 갭 잠금을 끄면 경쟁 삽입이 가능해진다."
+        },
+        {
+          "rank": 43,
+          "similarity": 0.8054184,
+          "chunk_id": "mysql84-locking-sx-compatibility",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "S·X 호환성\n레코드 S 락끼리는 호환된다. 다른 트랜잭션의 X는 S·X 요청과 충돌하여 대기를 유발한다."
+        },
+        {
+          "rank": 44,
+          "similarity": 0.8041495,
+          "chunk_id": "mysql84-locks-set-unlock-union",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "잠금해제 지연\n유니크 검색의 잠금 읽기는 부적합 행 잠금을 해제할 수 있다. UNION의 임시 테이블 처리로 실행 종료까지 해제가 늦어질 수 있다."
+        },
+        {
+          "rank": 45,
+          "similarity": 0.80413496,
+          "chunk_id": "mysql84-phantoms-absence",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "비존재 키보호\n공유 넥스트키 락으로 후보 키의 삽입 위치를 보호·유지하면, 경쟁 삽입을 제한하는 애플리케이션 유일성 검사를 구성할 수 있다."
+        },
+        {
+          "rank": 46,
+          "similarity": 0.8034601,
+          "chunk_id": "mysql84-consistent-read-mixed-versions",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "자기변경 예외\n같은 트랜잭션의 수정 행과 다른 행의 옛 버전이 함께 보여 실제로 존재하지 않았던 조합을 읽을 수 있다."
+        },
+        {
+          "rank": 47,
+          "similarity": 0.80313575,
+          "chunk_id": "mysql84-consistent-read-rr",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "RR 읽기시점\nRR은 첫 일관 읽기의 스냅샷을 재사용한다. 다른 트랜잭션이 커밋해도 기존 스냅샷은 그대로다."
+        },
+        {
+          "rank": 48,
+          "similarity": 0.8031118,
+          "chunk_id": "mysql84-autocommit-autocommit-default",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+          "text": "자동커밋 기본\n기본 autocommit에서는 오류 없는 문장마다 커밋한다. 오류가 난 문장의 커밋·롤백 처리는 오류 종류에 따라 다르다."
+        },
+        {
+          "rank": 49,
+          "similarity": 0.80260205,
+          "chunk_id": "mysql84-locks-set-foreign-key",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+          "text": "FK 검사잠금\nFK 검사에 읽은 레코드에는 S 락을 설정한다. 제약 검사 실패에도 설정될 수 있다."
+        },
+        {
+          "rank": 50,
+          "similarity": 0.8015833,
+          "chunk_id": "mysql84-phantoms-range-example",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+          "text": "행잠금의 한계\nid가 90·102인 상태의 id>100 잠금 조회에서 102 행만 보호하면 경쟁 세션의 101 삽입을 막지 못한다."
+        },
+        {
+          "rank": 51,
+          "similarity": 0.7999711,
+          "chunk_id": "mysql84-locking-table-compatibility",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "테이블락 호환성\n테이블 IX끼리·IS/IX는 호환된다. 테이블 X는 다른 모드와, 테이블 S는 IX와 충돌한다."
+        },
+        {
+          "rank": 52,
+          "similarity": 0.7996971,
+          "chunk_id": "mysql84-consistent-read-visibility",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+          "text": "스냅샷 가시성\n일관 읽기는 특정 시점까지 커밋된 변경을 본다. 이후·미커밋 변경은 제외하지만 같은 트랜잭션의 앞선 변경은 보인다."
+        },
+        {
+          "rank": 53,
+          "similarity": 0.79932916,
+          "chunk_id": "mysql84-locking-gap-coexistence",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "갭락 공존\n갭 락은 구간 삽입을 막는다. 같은 갭의 S·X 갭 락은 공존한다."
+        },
+        {
+          "rank": 54,
+          "similarity": 0.79917306,
+          "chunk_id": "mysql84-isolation-ru",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RU 더티리드\nRU의 일반 SELECT는 비잠금 읽기이며 미커밋 변경을 읽는 더티 리드가 가능하다."
+        },
+        {
+          "rank": 55,
+          "similarity": 0.7958463,
+          "chunk_id": "mysql84-locking-next-key",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "넥스트키 구성\n넥스트키는 인덱스 레코드와 앞쪽 갭을 함께 잠근다. RR의 범위 잠금에서 팬텀을 방지한다."
+        },
+        {
+          "rank": 56,
+          "similarity": 0.79455644,
+          "chunk_id": "mysql84-isolation-rr-read-mix",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RR 읽기혼합\nRR의 비잠금 읽기는 스냅샷, 잠금 읽기는 최신 상태를 사용하므로 혼합 결과가 직관과 다를 수 있다."
+        },
+        {
+          "rank": 57,
+          "similarity": 0.78816485,
+          "chunk_id": "mysql84-isolation-rr-snapshot",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "text": "RR 스냅샷\nRR의 일반 일관 읽기는 트랜잭션의 첫 일관 읽기에서 정한 스냅샷을 재사용한다."
+        },
+        {
+          "rank": 58,
+          "similarity": 0.7854988,
+          "chunk_id": "mysql84-locking-supremum",
+          "v_mysql": 8.4,
+          "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+          "text": "마지막 갭\nsupremum은 실제 행이 아니다. 마지막 넥스트키 구간은 최대 키 뒤쪽 갭을 잠근다."
+        }
+      ],
+      "embedding_ms": 27.685,
+      "vector_search_ms": 3.967,
+      "elapsed_ms": 31.651,
+      "question_number": 15,
+      "expected_chunk_ids": [
+        "mysql84-locking-index-record",
+        "mysql84-locking-gap-coexistence"
+      ],
+      "expected_ranks": [
+        {
+          "chunk_id": "mysql84-locking-index-record",
+          "rank": 12,
+          "similarity": 0.830129,
+          "text": "레코드락 대상\n레코드 락은 인덱스 레코드를 잠근다. 인덱스가 없어도 숨은 클러스터 인덱스를 사용한다."
+        },
+        {
+          "chunk_id": "mysql84-locking-gap-coexistence",
+          "rank": 53,
+          "similarity": 0.79932916,
+          "text": "갭락 공존\n갭 락은 구간 삽입을 막는다. 같은 갭의 S·X 갭 락은 공존한다."
+        }
+      ],
+      "metrics": {
+        "3": {
+          "hit": 0,
+          "recall": 0.0,
+          "rr": 0.0
+        },
+        "5": {
+          "hit": 0,
+          "recall": 0.0,
+          "rr": 0.0
+        },
+        "10": {
+          "hit": 0,
+          "recall": 0.0,
+          "rr": 0.0
+        },
+        "20": {
+          "hit": 1,
+          "recall": 0.5,
+          "rr": 0.08333333333333333
+        },
+        "58": {
+          "hit": 1,
+          "recall": 1.0,
+          "rr": 0.08333333333333333
+        }
+      },
+      "baseline_top3_match": true
+    }
+  ],
+  "protocol": {
+    "query_template": "query: {question}\nMySQL 8.4 InnoDB",
+    "version": 8.4,
+    "sequential": true,
+    "openai_calls": 0,
+    "cutoffs": [
+      3,
+      5,
+      10,
+      20,
+      58
+    ]
+  },
+  "sha256": {
+    "embedding\\chunks.jsonl": "5b81f27879f2664befb1ee8664be6faa6d3262c5faf49a3f8a8a992c4168d332",
+    "embedding\\retrieval-cases.jsonl": "13b6e3e65313a194d4390f696ca38df751d932f3ca8f60b3c55e037fb647caf4"
+  }
+}

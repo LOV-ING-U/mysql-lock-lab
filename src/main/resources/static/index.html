@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MySQL Lock Lab</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<main>
+  <header>
+    <strong>MySQL Lock Lab</strong>
+    <nav>
+      <button type="button" data-screen="lab">실험실</button>
+      <button type="button" data-screen="problems">문제 풀기</button>
+    </nav>
+  </header>
+
+  <!-- 실험실 -->
+  <section id="screen-lab">
+    <h2>1. 테이블·데이터 준비 <span class="note">(추적을 끈 상태에서)</span></h2>
+    <textarea id="setup-sql" class="short" spellcheck="false">CREATE TABLE t (id INT PRIMARY KEY, v INT) ENGINE=InnoDB;
+INSERT INTO t VALUES (10, 0), (20, 0), (30, 0);</textarea>
+    <div class="row">
+      <button id="setup-run" type="button">준비 SQL 실행</button>
+      <button id="reset" type="button">리셋 (테이블·기록 삭제)</button>
+      <span class="note">테이블: <span id="tables">없음</span></span>
+    </div>
+    <p id="setup-message" role="status"></p>
+
+    <h2>2. GDB 추적</h2>
+    <div class="row">
+      <button id="trace-toggle" type="button">추적 시작</button>
+      <span id="tracer-status" class="note">GDB 상태 확인 중</span>
+    </div>
+    <pre id="tracer-diagnostics" class="error"></pre>
+
+    <h2>3. 세션 콘솔</h2>
+    <p class="note">REPEATABLE READ · autocommit=false. 실행은 커밋하지 않습니다.</p>
+    <div class="consoles">
+      <div class="console" data-session="A">
+        <h3>세션 A <span class="badge" data-status></span></h3>
+        <textarea spellcheck="false">SELECT * FROM t WHERE id = 20 FOR UPDATE;</textarea>
+        <div class="row">
+          <button type="button" data-run>실행</button>
+          <button type="button" data-commit>커밋</button>
+        </div>
+        <p class="error" data-error></p>
+        <pre data-rows></pre>
+      </div>
+      <div class="console" data-session="B">
+        <h3>세션 B <span class="badge" data-status></span></h3>
+        <textarea spellcheck="false">SELECT * FROM t WHERE id = 20 FOR UPDATE;</textarea>
+        <div class="row">
+          <button type="button" data-run>실행</button>
+          <button type="button" data-commit>커밋</button>
+        </div>
+        <p class="error" data-error></p>
+        <pre data-rows></pre>
+      </div>
+    </div>
+
+    <h2>4. 타임라인</h2>
+    <div class="row">
+      <button id="export" type="button">JSON 내보내기</button>
+    </div>
+    <p class="note">행을 누르면 그 시점의 구조체 상태를 아래에 표시합니다. enter = 함수 진입 직전, return = 함수 반환 직후.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>#</th><th>세션</th><th>함수</th><th>시점</th><th>인자 / 대상</th><th>결과</th></tr></thead>
+        <tbody id="events"></tbody>
+      </table>
+    </div>
+    <p id="empty-events" class="note">세션에서 SQL을 실행하면 기록이 쌓입니다.</p>
+
+    <div id="snapshot" hidden>
+      <h3 id="snapshot-title"></h3>
+      <div class="snapshot-grid">
+        <div>
+          <h4>lock_t</h4>
+          <table>
+            <thead><tr><th>id</th><th>trx</th><th>table / page_id</th><th>type_mode</th><th>bitmap</th></tr></thead>
+            <tbody id="snap-locks"></tbody>
+          </table>
+        </div>
+        <div>
+          <h4>trx_t</h4>
+          <table>
+            <thead><tr><th>trx</th><th>trx_locks</th><th>wait_lock</th><th>blocking_trx</th></tr></thead>
+            <tbody id="snap-trx"></tbody>
+          </table>
+        </div>
+        <div>
+          <h4>lock_sys-&gt;rec_hash (비어 있지 않은 셀)</h4>
+          <table>
+            <thead><tr><th>cell</th><th>체인 (hash 포인터 순서)</th></tr></thead>
+            <tbody id="snap-hash"></tbody>
+          </table>
+        </div>
+        <div>
+          <h4>dict_table_t</h4>
+          <table>
+            <thead><tr><th>table</th><th>locks</th><th>count_by_mode</th></tr></thead>
+            <tbody id="snap-tables"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 문제 풀기 (기존 학습 기능) -->
+  <section id="screen-problems" hidden>
+    <nav id="problem-navigation" aria-label="문제 번호"></nav>
+    <p id="learning-message" role="status"></p>
+    <div id="problem-view">
+      <p id="problem-question"></p>
+      <details><summary>테이블 준비 SQL</summary><pre id="problem-table-sql"></pre></details>
+      <details><summary>실행 SQL</summary><pre id="problem-test-sql"></pre></details>
+      <form id="grade-form">
+        <fieldset id="problem-choices"></fieldset>
+        <button id="grade-submit" type="submit" disabled>답안 제출</button>
+      </form>
+    </div>
+    <div id="grade-view" hidden>
+      <p id="grade-result" role="status"></p>
+      <p>정답: <strong id="grade-answer"></strong> · 사용자 답: <span id="grade-user-answer"></span></p>
+      <details><summary>정석 해설</summary><p id="grade-explanation"></p></details>
+      <h3>AI에게 추가 질문</h3>
+      <div id="chat" aria-live="polite"></div>
+      <form id="ask-form">
+        <textarea id="ask-question" class="short" maxlength="1000" spellcheck="false" required></textarea>
+        <button id="ask-submit" type="submit">질문 보내기</button>
+      </form>
+      <p id="ask-status" role="status"></p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

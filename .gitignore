@@ -1,0 +1,10 @@
+target/
+.idea/
+*.iml
+*.log
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+THIRD_PARTY.md

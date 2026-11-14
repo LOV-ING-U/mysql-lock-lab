@@ -1,0 +1,40 @@
+name: mysql-lab-final
+services:
+  # mysqld-debug + GDB + Spring (한 컨테이너)
+  lab:
+    platform: linux/amd64
+    build: .
+    cap_add: [SYS_PTRACE]
+    security_opt: [seccomp=unconfined]
+    ports:
+      - "127.0.0.1:${APP_PORT:-8080}:8080"
+    environment:
+      MYSQL_ROOT_PASSWORD: local-lock-lab
+      DB_PASSWORD: local-lock-lab
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-6-luna}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    stop_grace_period: 30s
+
+  # 아래 둘은 문제 풀이의 AI 추가 질문(RAG)용
+  qdrant:
+    image: docker.io/qdrant/qdrant:v1.17.0
+    volumes:
+      - qdrant-data:/qdrant/storage
+
+  embedding:
+    build: ./embedding
+    environment:
+      QDRANT_URL: http://qdrant:6333
+      HF_HOME: /models
+      OMP_NUM_THREADS: "2"
+      TOKENIZERS_PARALLELISM: "false"
+    volumes:
+      - embedding-models:/models
+    depends_on: [qdrant]
+
+volumes:
+  mysql-data:
+  qdrant-data:
+  embedding-models:

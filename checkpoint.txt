@@ -1,0 +1,3 @@
+요청    lock_table, lock_rec_lock, lock_rec_insert_check_and_lock
+승인    lock_grant
+해제    lock_rec_discard, lock_table_remove_low, lock_rec_release, lock_trx_release_locks

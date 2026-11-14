@@ -1,0 +1,37 @@
+* { box-sizing: border-box; }
+body { margin: 0; color: #111; background: #fff; font: 14px/1.5 system-ui, sans-serif; }
+main { max-width: 1280px; margin: 20px auto; padding: 0 16px; }
+header { display: flex; align-items: center; gap: 16px; border-bottom: 1px solid #999; padding-bottom: 12px; }
+nav { display: flex; flex-wrap: wrap; gap: 6px; }
+h2 { margin: 28px 0 8px; font-size: 18px; }
+h3 { margin: 0 0 8px; font-size: 15px; }
+h4 { margin: 12px 0 6px; font-size: 13px; font-family: Consolas, monospace; }
+button { font: inherit; background: #f4f4f4; border: 1px solid #888; border-radius: 2px; padding: 6px 12px; cursor: pointer; }
+button[aria-current] { background: #ddd; font-weight: bold; border-color: #111; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+textarea { width: 100%; height: 140px; resize: vertical; padding: 8px; border: 1px solid #888; font: 13px/1.5 Consolas, monospace; }
+textarea.short { height: 90px; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #f6f6f6; padding: 8px; font: 12px/1.4 Consolas, monospace; max-height: 200px; overflow: auto; }
+.row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.note { color: #555; font-size: 13px; }
+.error { color: #a10000; white-space: pre-wrap; }
+.consoles { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.console { border: 1px solid #bbb; padding: 12px; }
+.badge { font-size: 12px; font-weight: normal; padding: 1px 6px; border: 1px solid #999; border-radius: 8px; }
+.badge[data-value="waiting"] { background: #ffe1a8; border-color: #c08000; }
+.badge[data-value="running"] { background: #dde8ff; }
+.badge[data-value="error"] { background: #ffd6d6; }
+.table-scroll { max-height: 360px; overflow: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th, td { text-align: left; vertical-align: top; border: 1px solid #ccc; padding: 4px 6px; font-family: Consolas, monospace; }
+th { background: #eee; position: sticky; top: 0; }
+#events tr { cursor: pointer; }
+#events tr.wait td { background: #fff3d6; }
+#events tr.selected td { background: #d9e6ff; }
+.snapshot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+fieldset { border: 1px solid #999; margin-bottom: 12px; }
+fieldset label { display: block; margin: 8px 0; }
+#problem-navigation { margin: 12px 0; }
+#chat > article { border: 1px solid #bbb; margin: 12px 0; padding: 8px; }
+[hidden] { display: none !important; }
+@media (max-width: 800px) { .consoles, .snapshot-grid { grid-template-columns: 1fr; } }

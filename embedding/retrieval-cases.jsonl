@@ -1,0 +1,15 @@
+{"case_id": "intent-vs-x", "query": "X가 있는데 IX는 왜 따로 있어요?", "relevant_chunk_ids": ["mysql84-locking-intention-protocol", "mysql84-locking-table-compatibility"]}
+{"case_id": "gap-coexist", "query": "Gap Lock끼리는 충돌하나요?", "relevant_chunk_ids": ["mysql84-locking-gap-coexistence"]}
+{"case_id": "existing-pk", "query": "RR에서 트랜잭션을 시작하고 존재하는 PK 행을 FOR UPDATE로 찾았어요. 앞쪽 Gap Lock도 생기나요?", "relevant_chunk_ids": ["mysql84-locking-unique-existing", "mysql84-isolation-rr-locking-range", "mysql84-locking-reads-transaction"]}
+{"case_id": "insert-shared", "query": "INSERT인데 왜 S 잠금이 생겨요? 중복 키 오류나 FK 검사 때문일 수도 있나요?", "relevant_chunk_ids": ["mysql84-locks-set-insert-duplicate", "mysql84-locks-set-foreign-key"]}
+{"case_id": "secondary-index", "query": "보조 인덱스 조건으로 X 락을 잡으면 PRIMARY 레코드도 잠그나요?", "relevant_chunk_ids": ["mysql84-locks-set-secondary-clustered"]}
+{"case_id": "rc-gap", "query": "READ COMMITTED로 바꾸면 Gap Lock이 전부 없어지나요?", "relevant_chunk_ids": ["mysql84-isolation-rc-read-gap", "mysql84-locking-rc-gap-exceptions"]}
+{"case_id": "release", "query": "COMMIT이나 ROLLBACK을 하면 InnoDB 락은 언제 풀리나요?", "relevant_chunk_ids": ["mysql84-autocommit-end-release", "mysql84-locking-reads-transaction"]}
+{"case_id": "explicit-with-autocommit", "query": "autocommit=1이어도 START TRANSACTION으로 여러 SQL을 묶을 수 있나요?", "relevant_chunk_ids": ["mysql84-autocommit-explicit-transaction"]}
+{"case_id": "old-value", "query": "RR에서 다른 트랜잭션이 수정하고 커밋했는데 왜 일반 SELECT에 예전 값이 보여요?", "relevant_chunk_ids": ["mysql84-consistent-read-rr", "mysql84-isolation-rr-snapshot"]}
+{"case_id": "subquery", "query": "바깥 SELECT에 FOR UPDATE를 붙이면 서브쿼리의 테이블도 자동으로 잠그나요?", "relevant_chunk_ids": ["mysql84-locking-reads-subquery"]}
+{"case_id": "skip-vs-nowait", "query": "행 락을 기다리지 않으려면 NOWAIT와 SKIP LOCKED 중 무엇을 써야 하나요? 오류와 제외의 차이가 있나요?", "relevant_chunk_ids": ["mysql84-locking-reads-nowait", "mysql84-locking-reads-skip-locked"]}
+{"case_id": "phantom", "query": "조회한 행만 잠그면 되는데 왜 사이 구간과 마지막 레코드 뒤까지 막아요?", "relevant_chunk_ids": ["mysql84-phantoms-range-example", "mysql84-phantoms-next-key-tail", "mysql84-locking-supremum"]}
+{"case_id": "serializable", "query": "SERIALIZABLE이면 autocommit과 무관하게 모든 일반 SELECT가 FOR SHARE가 되나요?", "relevant_chunk_ids": ["mysql84-isolation-serializable-autocommit", "mysql84-autocommit-explicit-transaction"]}
+{"case_id": "auto-inc-lifetime", "query": "AUTO-INC 테이블 락도 무조건 트랜잭션 COMMIT까지 유지되나요?", "relevant_chunk_ids": ["mysql84-locks-set-auto-inc-duration", "mysql84-autocommit-end-release"]}
+{"case_id": "gap-vs-record", "query": "gap lock과 record lock의 구별 기준은 뭐에요?", "relevant_chunk_ids": ["mysql84-locking-index-record", "mysql84-locking-gap-coexistence"]}

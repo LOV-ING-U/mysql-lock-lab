@@ -1,0 +1,8 @@
+CREATE TABLE t (
+  id INT PRIMARY KEY,
+  c INT,
+  v INT,
+  KEY idx_c (c)
+);
+
+INSERT INTO t VALUES (10, 10, 0), (20, 20, 0), (30, 30, 0);

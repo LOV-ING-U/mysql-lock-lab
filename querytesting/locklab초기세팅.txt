@@ -1,0 +1,8 @@
+CREATE TABLE lock_probe (
+    id INT PRIMARY KEY,
+    k  INT NOT NULL,
+    v  INT NOT NULL DEFAULT 0,
+    KEY ix_k (k)
+) ENGINE=InnoDB;
+
+INSERT INTO lock_probe (id, k) VALUES (10, 100), (20, 200), (30, 300);

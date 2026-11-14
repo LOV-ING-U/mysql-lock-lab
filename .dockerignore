@@ -1,0 +1,8 @@
+target
+.git
+.idea
+*.log
+__pycache__
+*.pyc
+.env
+.env.*

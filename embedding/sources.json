@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "corpus_id": "mysql84-locking-curated-ko-v1",
+  "created_on": "2026-10-15",
+  "mysql_version": "8.4",
+  "language": "ko",
+  "content_type": "curated_summary",
+  "description": "지정된 MySQL 8.4 공식 문서 일곱 페이지의 주요 규칙을 의미 단위로 정리한 한국어 검색용 자료. 영어 원문 분할본이나 완역본이 아니다.",
+  "embedding_status": "not_embedded",
+  "database_status": "not_uploaded",
+  "chunk_count": 58,
+  "documents": [
+    {
+      "document_id": "mysql84-locking",
+      "title": "InnoDB Locking",
+      "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html",
+      "section": "17.7.1",
+      "source_checked_on": "2026-10-15",
+      "chunk_count": 12
+    },
+    {
+      "document_id": "mysql84-locks-set",
+      "title": "Locks Set by Different SQL Statements in InnoDB",
+      "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locks-set.html",
+      "section": "17.7.3",
+      "source_checked_on": "2026-10-15",
+      "chunk_count": 10
+    },
+    {
+      "document_id": "mysql84-isolation",
+      "title": "Transaction Isolation Levels",
+      "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+      "section": "17.7.2.1",
+      "source_checked_on": "2026-10-15",
+      "chunk_count": 9
+    },
+    {
+      "document_id": "mysql84-autocommit",
+      "title": "autocommit, Commit, and Rollback",
+      "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-autocommit-commit-rollback.html",
+      "section": "17.7.2.2",
+      "source_checked_on": "2026-10-15",
+      "chunk_count": 6
+    },
+    {
+      "document_id": "mysql84-consistent-read",
+      "title": "Consistent Nonlocking Reads",
+      "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html",
+      "section": "17.7.2.3",
+      "source_checked_on": "2026-10-15",
+      "chunk_count": 8
+    },
+    {
+      "document_id": "mysql84-locking-reads",
+      "title": "Locking Reads",
+      "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html",
+      "section": "17.7.2.4",
+      "source_checked_on": "2026-10-15",
+      "chunk_count": 9
+    },
+    {
+      "document_id": "mysql84-phantoms",
+      "title": "Phantom Rows",
+      "source_url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-next-key-locking.html",
+      "section": "17.7.4",
+      "source_checked_on": "2026-10-15",
+      "chunk_count": 4
+    }
+  ]
+}

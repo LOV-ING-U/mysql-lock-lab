@@ -1,0 +1,21 @@
+server:
+  port: ${PORT:8080}
+  error:
+    # 실험실 API 오류(409, 503 등)의 메시지를 응답 JSON의 message에 담는다
+    include-message: always
+spring:
+  application:
+    name: mysql-lab-final
+lab:
+  database:
+    host: ${DB_HOST:127.0.0.1}
+    port: ${DB_PORT:3306}
+    user: ${DB_USER:root}
+    password: ${DB_PASSWORD:local-lock-lab}
+  gdb-script: ${GDB_SCRIPT:/opt/tracer/trace.gdb}
+  mysqld-pid-file: ${MYSQLD_PID_FILE:/run/mysqld/mysqld.pid}
+  ai:
+    embedding-url: ${EMBEDDING_URL:http://embedding:8090}
+    qdrant-url: ${QDRANT_URL:http://qdrant:6333}
+    openai-api-key: ${OPENAI_API_KEY:}
+    model: ${OPENAI_MODEL:gpt-6-luna}

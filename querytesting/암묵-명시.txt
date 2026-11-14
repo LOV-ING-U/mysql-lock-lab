@@ -1,0 +1,34 @@
+1) Select
+select / from / where / order by / limit
+
+
+2) insert
+insert into DB (....) values (...);
+
+
+3) delete
+delete from DB where ....;
+
+
+4) update
+update DB
+set .....
+where ....;
+
+
+-----------------------테이블세팅
+CREATE TABLE lock_probe (
+    id INT PRIMARY KEY,
+    k  INT NOT NULL,
+    v  INT NOT NULL DEFAULT 0,
+    KEY ix_k (k)
+) ENGINE=InnoDB;
+
+INSERT INTO lock_probe (id, k) VALUES (10, 100), (20, 200), (30, 300);
+
+------------------
+1) A
+INSERT INTO lock_probe (id, k) VALUES (25, 250);
+
+2) B
+SELECT * FROM lock_probe WHERE id = 25 FOR UPDATE;
