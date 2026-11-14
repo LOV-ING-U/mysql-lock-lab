@@ -4,21 +4,6 @@
 `lock_t`, `trx_t`, `lock_sys->rec_hash`, `dict_table_t->locks` 상태를 타임라인으로 보여줍니다.
 MySQL 8.4.6 공식 디버그 바이너리에 GDB를 붙여 메모리를 읽기만 합니다 (MySQL 소스 수정 없음).
 
-## 실행
-
-```bash
-cp .env.example .env        # AI 추가 질문을 쓸 때만 OPENAI_API_KEY 입력
-docker compose up --build -d
-docker compose logs -f lab  # "Started LockLabApplication" 확인
-```
-
-http://localhost:8080 접속 후 순서:
-
-1. 준비 SQL 실행 (추적이 꺼진 상태에서만 가능)
-2. **추적 시작** → "GDB 연결됨"이 될 때까지 대기 (디버그 심볼을 읽느라 수십 초)
-3. 세션 A·B 콘솔에서 실행·커밋
-4. 리셋하면 GDB도 떨어집니다. 다시 준비 SQL → 추적 시작
-
 ## 구조
 
 ```
@@ -96,7 +81,7 @@ podman compose up -d --build
 
 실제 동작 확인 (화면에서):
 
-1. 준비 SQL 실행 (기본값: `t(id, v)`에 10, 20, 30) → 추적 시작
+1. 준비 SQL 실행 (기본값: `t(id, v)`에 10, 20, 30) → 추적 시작 버튼 클릭
 2. 세션 A `SELECT * FROM t WHERE id = 20 FOR UPDATE;` 실행 → `lock_table` IX, `lock_rec_lock` X,REC_NOT_GAP
 3. 세션 B 같은 SQL 실행 → B가 "락 대기 중", 마지막 이벤트 `DB_LOCK_WAIT`, `trx_t` B의 `blocking_trx = A`
 4. 세션 A 커밋 → `lock_trx_release_locks` → `lock_rec_discard` → `lock_grant` → `lock_table_remove_low`, B가 "실행 완료"로 바뀜
